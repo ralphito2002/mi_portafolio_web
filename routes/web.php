@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ControllerDescripcionServicios;
+use App\Http\Controllers\ControllerProyecto;
+use App\Http\Controllers\ControllerServicio;
+use App\Http\Controllers\ControllerTecnologia;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
