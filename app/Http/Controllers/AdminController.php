@@ -16,49 +16,45 @@ class AdminController extends Controller
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
+
+    public function show(string $id)
     {
-        //
+        $adminSeleccionado = Admin::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Administrador obtenida con éxito',
+            'data' => $adminSeleccionado
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Admin $admin)
+
+    public function update(Request $request, string $id)
     {
-        //
+
+          $validated = $request->validate([
+            'nombre' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $editarAdmin = Admin::findOrFail($id);
+
+        $editarAdmin->nombre = $request->nombre;
+        $editarAdmin->email = $request->email;
+        $editarAdmin->password = $request->password;
+
+        $editarAdmin->save();
+
+        return response()->json(['success' => true, 'message' => 'Administrador actualizado con Exito!','data'=>$editarAdmin], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Admin $admin)
     {
         //

@@ -9,7 +9,7 @@ class Curriculum extends Model
 {
     //
     use HasFactory;
-    protected $table = 'curriculum';
+    protected $table = 'curriculums';
     protected $primaryKey = 'id_curriculum';
 
     public $timestamps = false;

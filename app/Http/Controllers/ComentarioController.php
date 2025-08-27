@@ -3,36 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
 {
     public function index()
-    {      
+    {
         $comentario = Comentario::all();
 
-        return response()->json(['success'=>true, 'message'=>'Lista de comentarios obtenida con exito!', 'data'=>$comentario], 200);
+        return response()->json(['success' => true, 'message' => 'Lista de comentarios obtenida con exito!', 'data' => $comentario], 200);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-        'nombre_usuario' => 'required',
-        'comentario' => 'required',
-        'fecha_creacion' => 'required',
-        'reaccion' => 'required'
-    ]);
+            'nombre_usuario' => 'required',
+            'comentario' => 'required',
+            'reaccion' => 'required'
+        ]);
 
-    $nuevoComentario = new Comentario();
+        $nuevoComentario = new Comentario();
 
-    $nuevoComentario->nombre_usuario = $request->nombre_usuario;
-    $nuevoComentario->comentario = $request->comentario;
-    $nuevoComentario->fecha_creacion = $request->fecha_creacion;
-    $nuevoComentario->reaccion = $request->reaccion;
+        $nuevoComentario->nombre_usuario = $request->nombre_usuario;
+        $nuevoComentario->comentario = $request->comentario;
+        $nuevoComentario->fecha_creacion = Carbon::today()->format('Y-m-d');
+        $nuevoComentario->reaccion = $request->reaccion;
 
-    $nuevoComentario->save();
+        $nuevoComentario->save();
 
-    return response()->json([ 'success'=> true, 'message'=> 'Comentario almacenado con Exito!' ], 201);
+        return response()->json(['success' => true, 'message' => 'Comentario almacenado con Exito!'], 201);
     }
 
 
@@ -42,31 +42,31 @@ class ComentarioController extends Controller
         $comentarioSeleccionado = Comentario::findOrFail($id);
 
 
-       return response()->json(['success' => true,'message' => 'Comentario encontrado con éxito', 'data' => $comentarioSeleccionado
-    ], 200);   
+        return response()->json([
+            'success' => true,
+            'message' => 'Comentario obtenido con éxito',
+            'data' => $comentarioSeleccionado
+        ], 200);
     }
 
 
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-        'nombre_usuario' => 'required',
-        'comentario' => 'required',
-        'fecha_creacion' => 'required',
-        'reaccion' => 'required'
-    ]);
+            'nombre_usuario' => 'required',
+            'comentario' => 'required',
+            'reaccion' => 'required'
+        ]);
 
-    $editarComentario = Comentario::findOrFail($id);
+        $editarComentario = Comentario::findOrFail($id);
 
-    $editarComentario->nombre_usuario = $request->nombre_usuario;
-    $editarComentario->comentario = $request->comentario;
-    $editarComentario->fecha_creacion = $request->fecha_creacion;
-    $editarComentario->reaccion = $request->reaccion;
+        $editarComentario->nombre_usuario = $request->nombre_usuario;
+        $editarComentario->comentario = $request->comentario;
+        $editarComentario->reaccion = $request->reaccion;
 
-    $editarComentario->save();
+        $editarComentario->save();
 
-    return response()->json([ 'success'=> true, 'message'=> 'Comentario modificado con Exito!' ], 200);
-
+        return response()->json(['success' => true, 'message' => 'Comentario actualizado con Exito!','data' => $editarComentario], 200);
     }
 
 
@@ -76,6 +76,6 @@ class ComentarioController extends Controller
 
         $comentarioEliminado->delete();
 
-        return response()->json([ 'success'=> true, 'message'=> 'Comentario eliminado con Exito!'], 200);
+        return response()->json(['success' => true, 'message' => 'Comentario eliminado con Exito!'], 200);
     }
 }

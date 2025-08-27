@@ -22,6 +22,6 @@ class Descripcion_servicio extends Model
 
     public function servicio()
     {
-        return $this->belongsTo(Servicio::class, 'id_servicio');
+        return $this->belongsTo(Servicio::class, 'id_servicio', 'id_servicio');
     }
 }

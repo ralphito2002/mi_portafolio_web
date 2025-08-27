@@ -15,56 +15,73 @@ class ControllerTecnologia extends Controller
         //
         $tecnologias = Tecnologia::with('proyectos')->get();
 
-        return $tecnologias;
+        return response()->json(['success' => true, 'message' => 'Lista de tecnologias obtenida con exito!', 'data' => $tecnologias], 200);
 
   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+
+        $validate = $request->validate([
+            'nombre'=>'required',
+            'icono'=>'required',
+            'descripcion'=>'required',
+            'categoria'=>'required'
+        ]);
+
+        $nuevaTecnologia = new Tecnologia();
+
+        $nuevaTecnologia->nombre = $request->nombre;
+        $nuevaTecnologia->icono = $request->icono;
+        $nuevaTecnologia->descripcion = $request->descripcion;
+        $nuevaTecnologia->categoria = $request->categoria;
+        
+        $nuevaTecnologia->save();
+
+        return response()->json(['success'=>true,'message'=>'Lista de tecnologias obtenida con exito!', 'data'=>$nuevaTecnologia],201);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
-        //
+        $tecnologiaSeleccionada = Tecnologia::with('proyectos')->findOrFail($id);
+
+         return response()->json(['success'=>true,'message'=>'Tecnologia obtenida con exito!', 'data'=>$tecnologiaSeleccionada],200);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+         $validate = $request->validate([
+            'nombre'=>'required',
+            'icono'=>'required',
+            'descripcion'=>'required',
+            'categoria'=>'required'
+        ]);
+
+        $editarTecnologia = Tecnologia::findOrFail($id);
+
+        $editarTecnologia->nombre = $request->nombre;
+        $editarTecnologia->icono = $request->icono;
+        $editarTecnologia->descripcion = $request->descripcion;
+        $editarTecnologia->categoria = $request->categoria;
+        
+        $editarTecnologia->save();
+
+        return response()->json(['success'=>true,'message'=>'Tecnologia actualizada con exito!', 'data'=>$editarTecnologia],200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+        $tecnologiaEliminada = Tecnologia::find($id);
+
+        $tecnologiaEliminada->delete();
+
+        return response()->json(['success' => true, 'message' => 'Tecnologia eliminada con Exito!'], 200);
     }
 }

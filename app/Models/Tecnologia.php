@@ -12,7 +12,7 @@ class Tecnologia extends Model
     protected $table = 'tecnologias';
     protected $primaryKey = 'id_tecnologia';
     
-    public $timestamps = 'false';
+    public $timestamps = false;
 
     protected $fillable = [
 

@@ -7,61 +7,65 @@ use Illuminate\Http\Request;
 
 class ControllerServicio extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
-        $servicios = Servicio::with('descripciones')->get();
-        return $servicios;
+        $Servicios = Servicio::with('descripciones')->get();
+
+        return response()->json(['success' => true, 'message' => 'Lista de servicios obtenida con exito!', 'data' => $Servicios], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        $nuevoServicio = new Servicio();
+
+        $nuevoServicio->nombre = $request->nombre;
+
+        $nuevoServicio->save();
+
+        return response()->json(['success' => true, 'message' => 'Servicio almacenado con Exito!','data'=>$nuevoServicio], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
-        //
+        $servicioSeleccionado = Servicio::with('descripciones')->findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Servicio obtenido con éxito',
+            'data' => $servicioSeleccionado
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        $editarServicio = Servicio::find($id);
+
+        $editarServicio->nombre = $request->nombre;
+
+        $editarServicio->save();
+
+        return response()->json(['success' => true, 'message' => 'Servicio actualizado con Exito!','data'=>$editarServicio], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+        $servicioEliminado = Servicio::find($id);
+
+        $servicioEliminado->delete();
+
+        return response()->json(['success' => true, 'message' => 'Servicio eliminado con Exito!'], 200);
     }
 }
