@@ -1,11 +1,37 @@
 @import 'tailwindcss';
 
 @import 'tw-animate-css';
-
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+
+
+/* ESTILOS GLOBALES */
+
+.routerNavBar{
+
+    @apply m-0.5 text-purple-200 rounded-xl p-2.5 ring-0 
+    hover:ring-1 hover:ring-purple-300 hover:ring-offset-1 
+    transition-all duration-200 ease-in-out;
+
+}
+
+.routerNavBarFooter{
+
+    @apply m-0.5 text-purple-200 rounded-xl p-2 ring-0 
+    hover:underline hover:underline-offset-4 
+    transition-all duration-200 ease-in-out;
+
+}
+
+.router-link-exact-active {
+  @apply bg-white text-black shadow-lg;
+}
+
+
 @custom-variant dark (&:is(.dark *));
+
 
 @theme inline {
     --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';

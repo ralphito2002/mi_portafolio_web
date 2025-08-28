@@ -7,6 +7,14 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 
+import App from './App.vue';
+import router from './router';
+
+const app = createApp(App);
+
+app.use(router);
+app.mount('#app');
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
