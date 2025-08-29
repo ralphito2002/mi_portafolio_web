@@ -10,7 +10,7 @@ export default defineConfig({
             ssr: 'resources/js/ssr.ts',
             refresh: true,
         }),
-        tailwindcss(),
+        tailwindcss( ),
         vue({
             template: {
                 transformAssetUrls: {

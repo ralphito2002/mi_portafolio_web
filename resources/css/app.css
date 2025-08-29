@@ -11,22 +11,41 @@
 
 .routerNavBar{
 
-    @apply m-0.5 text-purple-200 rounded-xl p-2.5 ring-0 
-    hover:ring-1 hover:ring-purple-300 hover:ring-offset-1 
+    @apply text-purple-200 rounded-xl p-2 m-1 ring-0 
+    hover:ring-1 hover:ring-purple-300 hover:ring-offset-1
+    hover:ring-offset-turquesaBtnBorder hover:shadow-[0_0_25px_5px_rgba(41,158,154,0.7)]
     transition-all duration-200 ease-in-out;
 
 }
 
 .routerNavBarFooter{
 
-    @apply m-0.5 text-purple-200 rounded-xl p-2 ring-0 
+    @apply  text-purple-200 rounded-xl p-2 ring-0 
     hover:underline hover:underline-offset-4 
-    transition-all duration-200 ease-in-out;
+    transition-all duration-200 ease-in-out
 
 }
 
+
+.tema1 {
+    @apply bg-[url(../../public/images/mosaicoTriangulos.png)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1800;
+}
+.tema2 {
+    @apply bg-[url(../../public/images/mosaicoTriangulosCyan.png)] bg-contain bg-right bg-fixed ease-in transition-all duration-1500;
+}
+.tema3 {
+    @apply bg-[url(../../public/images/mosaicoTrianguloscyan2.png)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1500;
+}
+.tema4 {
+    @apply bg-[url(../../public/images/images.jpeg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-500;
+}
+
+
+
+
+
 .router-link-exact-active {
-  @apply bg-white text-black shadow-lg;
+  @apply bg-white text-black shadow-[0_0_25px_5px_rgba(34,211,238,0.5)];
 }
 
 
@@ -35,6 +54,11 @@
 
 @theme inline {
     --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-turquesaBtnBorder: #299E9A;
+    --color-turquesaBtnBg: #0E2322;
+    --color-turquesaBtnText: #258E8C;
+
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);

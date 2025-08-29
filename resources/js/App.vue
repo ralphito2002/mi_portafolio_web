@@ -1,12 +1,15 @@
 <template>
-  <div class="min-h-screen bg-black text-white">
+  <div id="" :class="temaActual" class="min-h-screen bg-black text-white contenedorVue">
+    <div class="bg-gradient-to-r from-black from-74% to-transparent to-90%">
+
+
     
    <!-- NAVBAR -->
 
-    <div class="grid grid-cols-12 gap-4">
+    <div class=" fixed grid grid-cols-12  bg-black w-full shadow-lg shadow-turquesaBtnBorder/80">
   <div class="col-span-9">
 
-    <nav class="flex gap-6 p-4 ms-1.5 text-1xl font-semibold justify-center">
+    <nav class="flex gap-4 p-3 ms-1.5 text-1xl font-semibold justify-center">
       <RouterLink to="/" class="routerNavBar">INICIO</RouterLink>
       <RouterLink to="/sobreMi" class="routerNavBar">SOBRE MI</RouterLink>
       <RouterLink to="/servicios" class="routerNavBar">SERVICIOS</RouterLink>
@@ -17,22 +20,23 @@
       <RouterLink to="/contactame" class="routerNavBar">CONTACTAME</RouterLink>
     </nav>
     
-    <hr class="border-t-1 border-cyan-500 mx-15">
+    <div class="mx-8">
+      <hr class="border-t-1 border-cyan-400 ">
+    <hr class="border-t-2 border-white ">
+    <div class="h-1.5 bg-gradient-to-b to-black from-turquesaBtnBorder"></div>
+    </div>
 
   </div>
 
         <!-- BOTON ADMIN -->
 
-  <div class="col-span-3 grid justify-center items-center">
-<button class="flex bg-white 
- text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-xl shadow gap-2
-hover:scale-105 hover:border-2 hover:border-cyan-400 hover:bg-cyan-950 hover:text-white  transition-transform duration-300 ease-in-out">
-
+  <div class="col-span-3 flex gap-4 justify-center items-center">
+<Button>
  Admin  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
 </svg>
-
-</button>
+</Button>
+<Button @click="cambiarTema" >Cambiar tema <i class="fa-solid fa-palette fa-lg"></i></Button>
   </div>
 
 
@@ -41,14 +45,18 @@ hover:scale-105 hover:border-2 hover:border-cyan-400 hover:bg-cyan-950 hover:tex
 
 </div>
 
+<!-- FALSO NAVBAR ESPACIO VACIO-->
+
+<div class=" h-20"></div>
+
 
     
 
 <!-- MAIN -->
 
-    <main class="p-6">
+    <div class="p-43 ">
       <RouterView />
-    </main>
+    </div>
 
 <!-- FIN DEL MAIN -->
 
@@ -56,20 +64,33 @@ hover:scale-105 hover:border-2 hover:border-cyan-400 hover:bg-cyan-950 hover:tex
 
 <!-- FOOTER -->
 
-<div class="bg-cyan-300 h-1"></div>
+<div class="bg-turquesaBtnBorder h-0.5"></div>
 <div class="bg-white h-0.5"></div>
 
-<div class="bg-gradient-to-b from-cyan-950 to-black text-white p-4 ">
-  
-  <div class="grid grid-cols-12 gap-4 p-4">
+<div class="bg-gradient-to-b from-cyan-950 to-black text-white ">
+  <div class="bg-gradient-to-b from-turquesaBtnBorder to-transparent h-2"></div>
+  <div class="py-10">
 
-    <div class="col-span-3 text-left m-3">
-      <hr>
-      <span>Hola <br>holis hehe</span>
-      <hr>
-    </div>
+
+  <div class="grid grid-cols-12 gap-5">
+
+    <div class="col-span-3  px-10 py-5">
+
+      <div class="h-0.5 bg-white mb-8 me-18"></div>
+      <div class=" text-left">
+        <h4 class="text-2xl font-semibold">El esfuerzo siempre proveera frutos siempre y cuando nunca te rindas y logres superar cada obstaculo.</h4>
+      </div>
+      
+      <div class="h-0.5 bg-white mt-8"></div>
     
-    <div class="col-span-3 text-left">
+    </div>
+
+
+
+
+
+    
+    <div class="col-span-3 px-4 text-left">
       <h2 class="text-lg underline underline-offset-4 pb-3">Enviame un correo:</h2>
 
       <input type="text" name="" id="" placeholder="Tu Nombre"
@@ -106,13 +127,14 @@ hover:scale-98 hover:border-2 hover:border-cyan-300 hover:bg-cyan-900 hover:whit
     </div>
     
     <div class="col-span-3 text-left">
-      <h2 class="text-3xl font-semibold ">Ralph Sebastian Abarca Rodriguez</h2>
-
+      <h2 class="text-3xl font-semibold ">Ralph Sebastian Abarca Rodriguez</h2><br>
+      <hr class="bordert-1 border-cyan-800">
+      
       <div class="text-gray-500 fond-semibold py-4">RalfhSebastiaar@gmail.com <br>(+506) 6273-2763 <br> Siquirres, Limon, Costa Rica.
       <br>Universidad de Costa Rica.</div>
       <div class="text-amber-200">Visita mis redes sociales:</div>
 
-       <div class="flex gap-3 my-5">
+       <div class="flex gap-2 my-5">
     <!-- LinkeIn -->
     <a href="https://linkedIn.com" target="_blank" class="p-3 bg-gray-800 rounded-full shadow-lg transform transition-all duration-300 hover:-translate-y-3 hover:bg-blue-400">
       <i class="fa-brands fa-linkedin text-white text-xl"></i>
@@ -145,14 +167,33 @@ hover:scale-98 hover:border-2 hover:border-cyan-300 hover:bg-cyan-900 hover:whit
 
 
   </div>
+</div> 
 
 
 </div>
 
 <!-- FIN DEL FOOTER -->
 
+<div class="text-center bg-gray-950 border-t-1 border-gray-500 text-gray-500 pe-3">
+    &copy; 2025 Ralph Sebastian Abarca Rodriguez. Todos los derechos reservados.
+</div>
+
+</div>
   </div>
   
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+import { ref, computed } from 'vue'
+import Button from '@/components/ui/button/Button.vue'
+
+let contador = ref(0);
+const temas = ["tema1", "tema2", "tema3", "tema4"];
+
+const cambiarTema = () => {
+  contador.value = (contador.value + 1) % temas.length;
+};
+
+const temaActual = computed(() => temas[contador.value]);
+</script>
+
