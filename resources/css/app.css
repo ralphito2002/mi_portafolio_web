@@ -28,18 +28,26 @@
 
 
 .tema1 {
-    @apply bg-[url(../../public/images/mosaicoTriangulos.png)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1800;
+    @apply bg-[url(../../public/images/fondos/fondo1.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1800;
 }
 .tema2 {
-    @apply bg-[url(../../public/images/mosaicoTriangulosCyan.png)] bg-contain bg-right bg-fixed ease-in transition-all duration-1500;
+    @apply bg-[url(../../public/images/fondos/fondo2.png)] bg-contain bg-right bg-fixed ease-in transition-all duration-1500;
 }
 .tema3 {
-    @apply bg-[url(../../public/images/mosaicoTrianguloscyan2.png)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1500;
+    @apply bg-[url(../../public/images/fondos/fondo3.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1500;
 }
 .tema4 {
-    @apply bg-[url(../../public/images/images.jpeg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-500;
+    @apply bg-[url(../../public/images/fondos/fondo4.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-500;
 }
-
+.tema5 {
+    @apply bg-[url(../../public/images/fondos/fondo5.jpg)] bg-contain bg-right bg-fixed ease-in transition-all duration-1500;
+}
+.tema6 {
+    @apply bg-[url(../../public/images/fondos/fondo6.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1500;
+}
+.tema7 {
+    @apply bg-[url(../../public/images/fondos/fondo7.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-500;
+}
 
 
 
@@ -57,7 +65,7 @@
 
     --color-turquesaBtnBorder: #299E9A;
     --color-turquesaBtnBg: #0E2322;
-    --color-turquesaBtnText: #258E8C;
+    --color-turquesaBtnText: #3FF4EB;
 
 
     --radius-lg: var(--radius);

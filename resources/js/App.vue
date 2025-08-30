@@ -6,7 +6,7 @@
     
    <!-- NAVBAR -->
 
-    <div class=" fixed grid grid-cols-12  bg-black w-full shadow-lg shadow-turquesaBtnBorder/80">
+    <div class=" fixed grid grid-cols-12 z-[2] bg-black w-full shadow-lg shadow-turquesaBtnBorder">
   <div class="col-span-9">
 
     <nav class="flex gap-4 p-3 ms-1.5 text-1xl font-semibold justify-center">
@@ -31,12 +31,10 @@
         <!-- BOTON ADMIN -->
 
   <div class="col-span-3 flex gap-4 justify-center items-center">
-<Button>
- Admin  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-</svg>
+<Button variant="secondary" size="secondary">
+ Admin  <i class="fa-solid fa-user fa-lg"></i>
 </Button>
-<Button @click="cambiarTema" >Cambiar tema <i class="fa-solid fa-palette fa-lg"></i></Button>
+<Button variant="secondary" size="secondary" @click="cambiarTema" >Cambiar tema <i class="fa-solid fa-palette fa-lg"></i></Button>
   </div>
 
 
@@ -54,7 +52,7 @@
 
 <!-- MAIN -->
 
-    <div class="p-43 ">
+    <div class="">
       <RouterView />
     </div>
 
@@ -188,7 +186,7 @@ import { ref, computed } from 'vue'
 import Button from '@/components/ui/button/Button.vue'
 
 let contador = ref(0);
-const temas = ["tema1", "tema2", "tema3", "tema4"];
+const temas = ["tema1", "tema2", "tema3", "tema4","tema5","tema6","tema7"];
 
 const cambiarTema = () => {
   contador.value = (contador.value + 1) % temas.length;
