@@ -15,5 +15,9 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/{any}', function () {
+    return view('app'); // tu blade principal con Vue
+})->where('any', '.*');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

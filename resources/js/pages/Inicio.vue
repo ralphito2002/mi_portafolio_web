@@ -1,7 +1,34 @@
-<script setup lang="ts">
+<script setup>
 import Button from '@/components/ui/button/Button.vue';
 import Card from '@/components/ui/card/Card.vue';
-import Separator from '@/components/ui/separator/Separator.vue';
+import EncabezadoSeccion from '@/components/EncabezadoSeccion.vue';
+
+const frases = [
+  "Primera frase",
+  "Segunda frase",
+  "Tercera frase",
+  "Cuarta frase"
+];
+
+function cambiarFrase() {
+  const frasesField = document.getElementById("frasesField");
+  let frase = 0;
+
+  frasesField.textContent = frases[frase];
+
+  setInterval(() => {
+    frasesField.style.opacity = 0;
+
+    setTimeout(() => {
+      frase = (frase + 1) % frases.length;
+      frasesField.textContent = frases[frase];
+      frasesField.style.opacity = 1;
+    }, 600);
+  }, 4000);
+}
+
+document.addEventListener("DOMContentLoaded", cambiarFrase);
+
 
 </script>
 
@@ -9,7 +36,6 @@ import Separator from '@/components/ui/separator/Separator.vue';
   
 
 <!--  PRESENTACION   -->
-
 
 <div class="grid grid-cols-12 py-9 gap-8">
 
@@ -30,14 +56,12 @@ import Separator from '@/components/ui/separator/Separator.vue';
 
     <h3 class="text-xl mb-10">Apasionado por la tecnologia, el diseno y solucion de problemas a traves del codigo. En este espacio muestro quien soy, que hago y como puedo ayudarte.</h3>
 
-    <h1 class="text-3xl mb-12 text-purple-300">Me encantaria trabajar juntos!</h1>
+    <h1 id="frasesField" class="text-3xl mb-12 text-purple-300">Me encantaria trabajar juntos!</h1>
 
     <div class="flex justify-center gap-8">
 
-      <Button>Curriculum Vitae CV</Button>
-
-      <Button>Contactame</Button>
-  
+      <a href="/curriculums"><Button>Curriculum Vitae CV</Button></a>
+      <a href="/contactame"><Button>Contactame</Button></a>
     </div>
 
     
@@ -77,39 +101,16 @@ import Separator from '@/components/ui/separator/Separator.vue';
 
 
 
-
 <!--  LINEA SEPARADORA   -->
 
-
   <div class="w-full h-1 bg-white shadow-[0_0_12px_3px_rgba(34,211,238,0.8)]"></div>
-
-
-
 
 
 <!--  SOBRE MI   -->
 
 <div class="backdrop-blur-md">
 
-
-
-  <!-- TITULO SOBRE MI   -->
-
-
-<div class="grid grid-cols-12 pt-10">
-
-  <div class="col-span-1"></div>
-
-  <div class="col-span-1 flex items-center">
-    <div class="h-1 flex-1 bg-turquesaBtnText"></div>
-  </div>
-  <div class="col-span-2 text-3xl text-turquesaBtnText text-center">Sobre mi</div>
-  <div class="col-span-6 flex items-center">
-    <div class="h-1 flex-1 bg-turquesaBtnText"></div>
-  </div>
-
-  <div class="col-span-3"></div>
-</div>
+ <EncabezadoSeccion>Sobre mi</EncabezadoSeccion>
 
 
   <!-- CONTENIDO SOBRE MI   -->
@@ -129,7 +130,7 @@ import Separator from '@/components/ui/separator/Separator.vue';
     <br>
     <h3 class="text-md">Lorem ipsum Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut asperiores vitae error laborum excepturi consequuntur recusandae suscipit fugit placeat, quo veritatis maxime tempora aperiam quod aliquid voluptas, cum, eveniet aut.dolor sit amet consectetur adipisicing elit. Aspernatur natus quam ullam, veniam praesentium accusamus blanditiis officiis similique totam eveniet saepe error facere, odit in! Velit nam vel voluptates alias!</h3>
     <br><br>
-    <div class="flex w-full justify-center"> <Button>Leer mas Sobre mi</Button></div>
+    <div class="flex w-full justify-center"> <a href="/sobreMi"><Button>Leer mas Sobre mi</Button></a></div>
    
   </div>
 </div>
@@ -179,12 +180,79 @@ import Separator from '@/components/ui/separator/Separator.vue';
 
 </div>
 
-
 </div>
 
+<!--  FIN SECCION SOBRE MI   -->
 
 
 
+
+<!--  SERVICIOS   -->
+
+<EncabezadoSeccion>Servicios</EncabezadoSeccion>
+
+  <!-- CONTENIDO SERVICIOS   -->
+
+  <br>
+  <div class="text-center">Aqui va el contenido</div><br>
+   
+
+<!-- FIN SERVICIOS   -->
+
+
+
+
+
+<!--  PROYECTOS   -->
+
+<div class="backdrop-blur-md">
+
+<EncabezadoSeccion>Proyectos</EncabezadoSeccion>
+
+  <!-- CONTENIDO PROYECTOS   -->
+
+  <br>
+  <div class="text-center">Aqui va el contenido</div><br><br><br><br><br><br>
+   
+  </div>
+
+<!-- FIN PROYECTOS   -->
+
+
+
+<!--  TECNOLOGIAS   -->
+
+<div class="backdrop-brightness-30">
+
+  <EncabezadoSeccion>Tecnologias</EncabezadoSeccion>
+
+  <!-- CONTENIDO TECNOLOGIAS   -->
+
+  <br>
+  <div class="text-center">Aqui va el contenido</div><br>
+
+  </div>
+
+<!-- FIN TECNOLOGIAS   -->
+
+
+
+
+<!--  COMENTARIOS   -->
+
+<div class="backdrop-blur-md">
+
+  
+<EncabezadoSeccion>Comentarios</EncabezadoSeccion>
+
+  <!-- CONTENIDO COMENTARIOS   -->
+
+  <br>
+  <div class="text-center">Aqui va el contenido</div><br>
+
+  </div>
+
+<!-- FIN TECNOLOGIAS   -->
 
 
 
