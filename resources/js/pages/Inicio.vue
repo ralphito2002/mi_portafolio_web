@@ -2,6 +2,8 @@
 import Button from '@/components/ui/button/Button.vue';
 import Card from '@/components/ui/card/Card.vue';
 import EncabezadoSeccion from '@/components/EncabezadoSeccion.vue';
+import CardComentario from '@/components/ui/card/CardComentario.vue';
+import Dialog from '@/components/ui/dialog/Dialog.vue';
 
 const frases = [
   "Primera frase",
@@ -248,11 +250,51 @@ document.addEventListener("DOMContentLoaded", cambiarFrase);
   <!-- CONTENIDO COMENTARIOS   -->
 
   <br>
-  <div class="text-center">Aqui va el contenido</div><br>
+
+  <div class="grid grid-cols-12">
+
+    <div class="col-span-1"></div>
+    <div class="col-span-10">
+
+      <div class="grid grid-cols-2 px-20 py-7 justify-center items-center gap-10">
+
+   <CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, loreonskdmcksmdkmcsocmskmdskmdcksmcksddsco nnom nbhuinomgubimo gvybuinj jjjjjjjjjjjjjjjjj muy dedicado y comprometido con su trabajo. Lo recomiendo ampliamente.">
+   </CardComentario>
+
+<CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, loreoreonskdmcksmdkm csocmskmdskmdcksmcks ddscooreonskdmcksm   cooreonskdmcksmdkmcsocmskm dskmdcksmcksddscooreonskdmc ksmdkmcsocmskmdskmdcksmcksd dscooreonskdmcks mdkmcsocmsk mdskmdcksmcksd dscooreonskdmcks mdkmcsocmskmdskmdcksmc ksddscooreonskd mcksmdkmcsocmskmdskmdc ksmcksddscoon skdmcksmdkmc socmskmdsk mdcksional, loreon skdmcksmdkmc socmskmdskm dcksmcks ddsco nnom nbhuinomgubimo gvybuiional, loreonskdmcksmdkmcsocmskmdskmdcksmcksddsco nnom nbhuinomgubimo gvybuimcksddsco nnom nbhuinomgubimo gvybuinj jjjjjjjjjjjjjjjjj muy dedicado y comprometido con su trabajo. Lo recomiendo ampliamente.">
+   </CardComentario>
+
+   <CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, loreonskdmcksmdkmcsocmskmdskmdcksmcksddsco nnom nbhuinomgubimo gvybuinj jjjjjjjjjjjjjjjjj muy dedicado y comprometido con su trabajo. Lo recomiendo ampliamente.">
+   </CardComentario>
+
+   <CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, jijijinte.">
+   </CardComentario>
+
 
   </div>
 
-<!-- FIN TECNOLOGIAS   -->
+  <div class="flex justify-center gap-15 items-center">
+
+    <Button command="show-modal" commandfor="modalNuevoComentario">Escribir comentario</Button>
+    <a href="/comentarios"><Button>Ver mas comentarios</Button></a>
+
+  </div>
+
+  <Dialog></Dialog>
+
+  <br><br>
+
+
+    </div>
+    <div class="col-span-1"></div>
+
+
+  </div>
+  
+
+  </div>
+
+<!-- FIN COMENTARIOS   -->
 
 
 
