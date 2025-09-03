@@ -59,6 +59,57 @@
   @apply bg-white text-black shadow-[0_0_25px_5px_rgba(34,211,238,0.5)];
 }
 
+/* Contenedor scrollable */
+.scrollable {
+  overflow-x: auto; /* horizontal */
+  overflow-y: hidden; /* vertical, opcional */
+}
+
+/* Para Webkit (Chrome, Edge, Safari) */
+.scrollable::-webkit-scrollbar {
+  height: 5px; /* altura del scrollbar horizontal */
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #0E2322; /* fondo del track */
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color:#3FF4EB; /* color del "thumb" */
+  border-radius: 4px; /* redondear bordes */
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color:#3FF4EB; /* efecto hover */
+}
+
+/* Para Firefox */
+.scrollable {
+  scrollbar-width: thin; /* "auto", "thin" o "none" */
+  scrollbar-color: #3FF4EB transparent;
+}
+
+/* SCROLL DEL BODY  */
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #0E2322;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color:#3FF4EB;
+  border-radius: 4px;
+
+}
+
+
+
 
 @custom-variant dark (&:is(.dark *));
 

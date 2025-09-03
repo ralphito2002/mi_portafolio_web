@@ -4,6 +4,8 @@ import Card from '@/components/ui/card/Card.vue';
 import EncabezadoSeccion from '@/components/EncabezadoSeccion.vue';
 import CardComentario from '@/components/ui/card/CardComentario.vue';
 import Dialog from '@/components/ui/dialog/Dialog.vue';
+import { ref, onMounted } from "vue";
+import axios from "axios";
 
 const frases = [
   "Primera frase",
@@ -11,6 +13,8 @@ const frases = [
   "Tercera frase",
   "Cuarta frase"
 ];
+
+
 
 function cambiarFrase() {
   const frasesField = document.getElementById("frasesField");
@@ -31,6 +35,20 @@ function cambiarFrase() {
 
 document.addEventListener("DOMContentLoaded", cambiarFrase);
 
+const comentarios = ref([]);
+
+const cargarComentarios = async () => {
+    try {
+        const response = await axios.get("/api/comentarios");
+        comentarios.value = response.data.data; 
+    } catch (error) {
+        console.error("Error al cargar comentarios:", error);
+    }
+};
+
+onMounted(() => {
+    cargarComentarios();
+});
 
 </script>
 
@@ -256,31 +274,45 @@ document.addEventListener("DOMContentLoaded", cambiarFrase);
     <div class="col-span-1"></div>
     <div class="col-span-10">
 
-      <div class="grid grid-cols-2 px-20 py-7 justify-center items-center gap-10">
 
-   <CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, loreonskdmcksmdkmcsocmskmdskmdcksmcksddsco nnom nbhuinomgubimo gvybuinj jjjjjjjjjjjjjjjjj muy dedicado y comprometido con su trabajo. Lo recomiendo ampliamente.">
-   </CardComentario>
-
-<CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, loreoreonskdmcksmdkm csocmskmdskmdcksmcks ddscooreonskdmcksm   cooreonskdmcksmdkmcsocmskm dskmdcksmcksddscooreonskdmc ksmdkmcsocmskmdskmdcksmcksd dscooreonskdmcks mdkmcsocmsk mdskmdcksmcksd dscooreonskdmcks mdkmcsocmskmdskmdcksmc ksddscooreonskd mcksmdkmcsocmskmdskmdc ksmcksddscoon skdmcksmdkmc socmskmdsk mdcksional, loreon skdmcksmdkmc socmskmdskm dcksmcks ddsco nnom nbhuinomgubimo gvybuiional, loreonskdmcksmdkmcsocmskmdskmdcksmcksddsco nnom nbhuinomgubimo gvybuimcksddsco nnom nbhuinomgubimo gvybuinj jjjjjjjjjjjjjjjjj muy dedicado y comprometido con su trabajo. Lo recomiendo ampliamente.">
-   </CardComentario>
-
-   <CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, loreonskdmcksmdkmcsocmskmdskmdcksmcksddsco nnom nbhuinomgubimo gvybuinj jjjjjjjjjjjjjjjjj muy dedicado y comprometido con su trabajo. Lo recomiendo ampliamente.">
-   </CardComentario>
-
-   <CardComentario usuario="Juan Perez" fecha="2023-10-01" comentario="Excelente profesional, jijijinte.">
-   </CardComentario>
-
-
+   <div class="grid grid-rows-2 overflow-x-auto gap-6 px-20 py-10">
+  <!-- Fila 1 -->
+  <div class="flex gap-6">
+    <CardComentario
+      v-for="comentario in comentarios.slice(0, 4)"
+      :key="comentario.id_comentario"
+      :usuario="comentario.nombre_usuario"
+      :fecha="comentario.fecha_creacion"
+      :comentario="comentario.comentario"
+      :reaccion="comentario.reaccion"
+      class="flex-shrink-0 w-90"
+    />
   </div>
 
-  <div class="flex justify-center gap-15 items-center">
+  <!-- Fila 2 -->
+  <div class="flex gap-6">
+    <CardComentario
+      v-for="comentario in comentarios.slice(4,8)"
+      :key="comentario.id_comentario"
+      :usuario="comentario.nombre_usuario"
+      :fecha="comentario.fecha_creacion"
+      :comentario="comentario.comentario"
+      :reaccion="comentario.reaccion"
+      class="flex-shrink-0 w-90"
+    />
+  </div>
+</div>
+
+
+
+  <div class="flex justify-center mt-8 gap-15 items-center">
 
     <Button command="show-modal" commandfor="modalNuevoComentario">Escribir comentario</Button>
     <a href="/comentarios"><Button>Ver mas comentarios</Button></a>
 
   </div>
 
-  <Dialog></Dialog>
+  <Dialog @comentario-creado="cargarComentarios"></Dialog>
 
   <br><br>
 

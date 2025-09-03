@@ -1,5 +1,5 @@
 <template>
-  <div id="" :class="temaActual" class="min-h-screen bg-black text-white contenedorVue">
+  <div id="" :class="temaActual" class="min-h-screen bg-black text-white contenedorVue scrollable">
     <div class="bg-gradient-to-r from-black from-74% to-transparent to-90%">
 
 

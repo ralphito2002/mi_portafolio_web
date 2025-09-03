@@ -1,7 +1,7 @@
 <template>
 
 <el-dialog>
-  <dialog id="modalNuevoComentario" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop-opacity-85">
+  <dialog id="modalNuevoComentario" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop-opacity-85 z-3">
     <el-dialog-backdrop class="fixed inset-0 bg-black/80 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
 
     <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
@@ -35,60 +35,136 @@
                   
                    <option value="like" class="bg-black text-white text-center">Like: 👍</option>
                    <option value="corazon" class="bg-black text-white text-center">Corazon: ❤️</option>
-                   <option value="sorprendido" class="bg-black text-white text-center">Sorprendido: 😲</option>
+                   <option value="confeti" class="bg-black text-white text-center">Confeti: 🎉</option>
+                   <option value="cool" class="bg-black text-white text-center">Cool: 😎</option>
+                   <option value="excelente" class="bg-black text-white text-center">Excelente: 💯</option>
+                   <option value="estrella" class="bg-black text-white text-center">Estrella: ⭐</option>
+                   <option value="feliz" class="bg-black text-white text-center">Feliz: 😺</option>
+                   <option value="enojo" class="bg-black text-white text-center">Enojo: 😠</option>
                   </select>
                   <br><br>
-
-
               </div>
             </div>
           </div>
         </div>
+
         <div class="bg-gray-700/25 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button @click="crearComentario" type="button" command="close" commandfor="modalNuevoComentario" class="inline-flex w-full justify-center rounded-md bg-turquesaBtnBg border-2 border-turquesaBtnBorder px-3 py-2 text-sm font-semibold text-white hover:bg-turquesaBtnBorder hover:border-turquesaBtnText sm:ml-3 hover:shadow-[0_0_20px_3px_rgba(41,158,154,0.7)] sm:w-auto">Crear comentario</button>
-          <button  type="button" command="close" commandfor="modalNuevoComentario" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-800/20 border-2 border-red-800/80 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-red-900/90 hover:border-red-500 hover:shadow-[0_0_20px_3px_rgba(220,38,38,0.7)] sm:mt-0 sm:w-auto">Cancelar</button>
+          <button @click="crearComentario" :disabled="!botonHabilitado || cargando" type="button"
+          :class="[
+              'inline-flex w-full justify-center rounded-md border-2 px-3 py-2 text-sm font-semibold sm:w-auto sm:ml-3 transition-all duration-300',
+              cargando
+                ? 'bg-gray-600 border-gray-400 cursor-wait text-white'
+                : botonHabilitado
+                ? 'inline-flex w-full justify-center rounded-md bg-turquesaBtnBg border-2 border-turquesaBtnBorder px-3 py-2 text-sm font-semibold text-white hover:bg-turquesaBtnBorder hover:border-turquesaBtnText sm:ml-3 hover:shadow-[0_0_20px_3px_rgba(41,158,154,0.7)] sm:w-auto'
+                : 'bg-gray-700 border-gray-500 text-gray-400 cursor-not-allowed'
+            ]" > 
+          
+          <span v-if="!cargando">Crear comentario</span>
+            <span v-else>Cargando...<i class="ms-3 fa-solid fa-spinner animate-spin text-turquesaBtnText"></i></span>
+          
+          </button>
+             <button @comentario-creado="cargarComentarios"  type="button" command="close" commandfor="modalNuevoComentario" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-800/20 border-2 border-red-800/80 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-red-900/90 hover:border-red-500 hover:shadow-[0_0_20px_3px_rgba(220,38,38,0.7)] sm:mt-0 sm:w-auto">Cancelar</button>
+
         </div>
       </el-dialog-panel>
     </div>
   </dialog>
 </el-dialog>
 
+<Alert
+      :mostrar="mostrarAlerta"
+      :tipo="tipoAlerta"
+      :titulo="tituloAlerta"
+      :mensaje="mensajeAlerta"
+      @cerrar="mostrarAlerta = false"
+    />
+
 </template>
 
-
 <script setup>
-
-import { ref, onMounted } from "vue";
+import { ref, computed } from "vue";
 import axios from "axios";
+import Alert from "@/components/Alert.vue";
 
 const nombre_usuario = ref("");
 const comentario = ref("");
 const reaccion = ref("like");
+const cargando = ref(false);
 
 
+// Estado de la alerta
+const mostrarAlerta = ref(false);
+const tipoAlerta = ref("success");
+const tituloAlerta = ref("");
+const mensajeAlerta = ref("");
+
+const emit = defineEmits(['comentario-creado']);
+
+// Computed para habilitar o deshabilitar el botón
+const botonHabilitado = computed(() => {
+  return nombre_usuario.value.trim() !== "" && comentario.value.trim() !== "";
+});
+
+// Diccionario de reacciones
+const reacciones = {
+  like: "👍",
+  corazon: "❤️",
+  confeti: "🎉",
+  cool: "😎",
+  excelente: "💯",
+  estrella: "⭐",
+  feliz: "😺",
+  enojo: "😠",
+};
 
 const crearComentario = async () => {
+  cargando.value = true;
+  const modal = document.getElementById("modalNuevoComentario");
+
   try {
-    await axios.post('/api/comentarios', {
+    const response = await axios.post("/api/comentarios", {
       nombre_usuario: nombre_usuario.value,
       comentario: comentario.value,
-      reaccion: reaccion.value
+      reaccion: reaccion.value,
     });
 
-    alert("Comentario creado!");
-    nombre_usuario.value = "";
-    comentario.value = "";
-    reaccion.value = "like";
+    if (response.status === 201 || response.status === 200) {
 
-    // Cierra el modal manualmente
-    const modal = document.getElementById("modalNuevoComentario");
-    if (modal) modal.close();
+      let nombre = nombre_usuario.value.split(" ")[0];
 
+
+      // Mostrar alerta de éxito
+      tipoAlerta.value = "success";
+      tituloAlerta.value = `¡Comentario creado! ${reacciones[reaccion.value]}`;
+      mensajeAlerta.value = `Gracias por tu opinion ${nombre}.Tu comentario se ha almacenado correctamente.`;
+      mostrarAlerta.value = true;
+      
+      modal.close();
+
+      // Limpiar formulario
+      nombre_usuario.value = "";
+      comentario.value = "";
+      reaccion.value = "like";
+
+      //refrescar los comentarios
+       emit('comentario-creado', response.data);
+        
+
+    }
   } catch (error) {
-    console.error(error);
-    alert("Error al crear el comentario");
+    // Mostrar alerta de error
+    tipoAlerta.value = "error";
+    tituloAlerta.value = "¡Ups! Algo salió mal";
+    mensajeAlerta.value = "Tu comentario no pudo ser almacenado. Inténtalo de nuevo.";
+    mostrarAlerta.value = true;
+
+    // Ocultamos automáticamente la alerta de error
+    setTimeout(() => {
+      mostrarAlerta.value = false;
+    }, 2500);
+  } finally {
+    cargando.value = false;
   }
-}
-
-
+};
 </script>
+
