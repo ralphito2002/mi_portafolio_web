@@ -4,6 +4,8 @@ import Card from '@/components/ui/card/Card.vue';
 import EncabezadoSeccion from '@/components/EncabezadoSeccion.vue';
 import CardComentario from '@/components/ui/card/CardComentario.vue';
 import Dialog from '@/components/ui/dialog/Dialog.vue';
+import CardTecnologia from '@/components/ui/card/CardTecnologia.vue';
+
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
@@ -46,8 +48,32 @@ const cargarComentarios = async () => {
     }
 };
 
+const tecnologias = ref([]);
+
+const cargarTecnologias = async () => {
+
+  try {
+    const response = await axios.get("/api/tecnologias");
+    tecnologias.value = response.data.data;
+    console.log(tecnologias.value);
+
+  } catch (error) {
+    console.error("Error al cargar comentarios:", error);
+  }
+
+};
+
+
+const tecnologiaSeleccionada = ref(null);
+
+const seleccionarTecnologia = (tecnologia) => {
+  tecnologiaSeleccionada.value = tecnologia;
+};
+
+
 onMounted(() => {
     cargarComentarios();
+    cargarTecnologias();
 });
 
 </script>
@@ -122,12 +148,10 @@ onMounted(() => {
 
 
 <!--  LINEA SEPARADORA   -->
-
   <div class="w-full h-1 bg-white shadow-[0_0_12px_3px_rgba(34,211,238,0.8)]"></div>
 
 
 <!--  SOBRE MI   -->
-
 <div class="backdrop-blur-md">
 
  <EncabezadoSeccion>Sobre mi</EncabezadoSeccion>
@@ -201,22 +225,18 @@ onMounted(() => {
 </div>
 
 </div>
-
 <!--  FIN SECCION SOBRE MI   -->
 
 
 
 
 <!--  SERVICIOS   -->
-
 <EncabezadoSeccion>Servicios</EncabezadoSeccion>
 
   <!-- CONTENIDO SERVICIOS   -->
 
   <br>
-  <div class="text-center">Aqui va el contenido</div><br>
-   
-
+  <div class="text-center">Aqui va el contenido</div><br> 
 <!-- FIN SERVICIOS   -->
 
 
@@ -224,7 +244,6 @@ onMounted(() => {
 
 
 <!--  PROYECTOS   -->
-
 <div class="backdrop-blur-md">
 
 <EncabezadoSeccion>Proyectos</EncabezadoSeccion>
@@ -235,13 +254,11 @@ onMounted(() => {
   <div class="text-center">Aqui va el contenido</div><br><br><br><br><br><br>
    
   </div>
-
 <!-- FIN PROYECTOS   -->
 
 
 
 <!--  TECNOLOGIAS   -->
-
 <div class="backdrop-brightness-30">
 
   <EncabezadoSeccion>Tecnologias</EncabezadoSeccion>
@@ -249,33 +266,168 @@ onMounted(() => {
   <!-- CONTENIDO TECNOLOGIAS   -->
 
   <br>
-  <div class="text-center">Aqui va el contenido</div><br>
+  <div class="grid grid-cols-12 h-auto">
+
+    <div class="col-span-1"></div>
+
+    <div class="col-span-6 px-10 ">
+
+      <div>
+      <h3 class="text-md text-orange-200 mb-2">Front-End:</h3>
+
+      <div class="flex gap-7">
+      <img
+            v-for="tecnologia in tecnologias.filter(t => t.categoria === 'frontend')"
+            :key="tecnologia.id"
+            :src="`/icons/tecnologias/${tecnologia.icono}`"
+            class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
+            :class="{
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+                tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+                tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
+            }"
+            @click="seleccionarTecnologia(tecnologia)"
+          />
+
+      </div>
+
+      
+      <br>
+
+      <h3 class="text-md text-orange-200 mb-2">Back-End:</h3>
+
+      <div class="flex gap-7">
+      <img
+            v-for="tecnologia in tecnologias.filter(t => t.categoria === 'backend')"
+            :key="tecnologia.id"
+            :src="`/icons/tecnologias/${tecnologia.icono}`"
+            class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
+            :class="{
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+                tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+                tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
+            }"
+            @click="seleccionarTecnologia(tecnologia)"
+          />
+      </div>
+
+
+      <br>
+
+      <h3 class="text-md text-orange-200 mb-2">Bases de datos:</h3>
+
+      <div class="flex gap-7">
+      <img
+            v-for="tecnologia in tecnologias.filter(t => t.categoria === 'bd')"
+            :key="tecnologia.id"
+            :src="`/icons/tecnologias/${tecnologia.icono}`"
+            class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
+            :class="{
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+                tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+                tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
+            }"
+            @click="seleccionarTecnologia(tecnologia)"
+          />
+      </div>
+
+      <br>
+
+      <h3 class="text-md text-orange-200 mb-2">Otras herramientas:</h3>
+
+      <div class="flex gap-7">
+      <img
+            v-for="tecnologia in tecnologias.filter(t => t.categoria === 'otro')"
+            :key="tecnologia.id"
+            :src="`/icons/tecnologias/${tecnologia.icono}`"
+            class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
+            :class="{
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+                tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+                tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
+            }"
+            @click="seleccionarTecnologia(tecnologia)"
+          />
+      </div>
+
+      <br>
+</div>
+
+
+
+
+    </div>
+
+    <div class="col-span-3">
+      <CardTecnologia
+        v-if="tecnologiaSeleccionada"
+        :nombre="tecnologiaSeleccionada.nombre"
+        :descripcion="tecnologiaSeleccionada.descripcion"
+        :icono="tecnologiaSeleccionada.icono"
+      />
+      <div
+        v-else
+        class="border-2 h-full border-dashed border-gray-600 text-gray-400 p-6 text-center rounded-lg"
+      >
+        Selecciona una tecnología para ver los detalles
+      </div>
+    </div>
+
+    <div class="col-span-2"></div>
 
   </div>
 
+  <br>
+ 
+
+
+  <div class="grid grid-cols-12">
+
+
+    <div class="col-span-7">
+    </div>
+
+    <div class="col-span-3 flex items-center justify-center gap-7">
+      <a href="/tecnologias"><Button>Ver tecnologias</Button></a>
+    </div>
+    <div class="col-span-2"></div>
+
+    <br><br>
+    
+    
+
+
+  </div>
+
+
+
+
+  </div>
 <!-- FIN TECNOLOGIAS   -->
 
 
 
 
 <!--  COMENTARIOS   -->
-
-<div class="backdrop-blur-md">
+<div class="">
 
   
 <EncabezadoSeccion>Comentarios</EncabezadoSeccion>
 
   <!-- CONTENIDO COMENTARIOS   -->
-
   <br>
 
   <div class="grid grid-cols-12">
 
     <div class="col-span-1"></div>
-    <div class="col-span-10">
+    <div class="col-span-9">
 
 
-   <div class="grid grid-rows-2 overflow-x-auto gap-6 px-20 py-10">
+   <div class="grid grid-rows-2 overflow-x-auto gap-6 px-2 py-10">
   <!-- Fila 1 -->
   <div class="flex gap-6">
     <CardComentario
@@ -318,14 +470,13 @@ onMounted(() => {
 
 
     </div>
-    <div class="col-span-1"></div>
+    <div class="col-span-2"></div>
 
 
   </div>
   
 
   </div>
-
 <!-- FIN COMENTARIOS   -->
 
 
