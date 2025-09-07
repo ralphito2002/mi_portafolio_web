@@ -5,9 +5,12 @@ import EncabezadoSeccion from '@/components/EncabezadoSeccion.vue';
 import CardComentario from '@/components/ui/card/CardComentario.vue';
 import Dialog from '@/components/ui/dialog/Dialog.vue';
 import CardTecnologia from '@/components/ui/card/CardTecnologia.vue';
+import CardServicio from '@/components/ui/card/CardServicio.vue';
 
 import { ref, onMounted } from "vue";
 import axios from "axios";
+
+
 
 const frases = [
   "Primera frase",
@@ -41,7 +44,7 @@ const comentarios = ref([]);
 
 const cargarComentarios = async () => {
     try {
-        const response = await axios.get("/api/comentarios");
+        const response = await axios.get("/api/ultimosComentarios");
         comentarios.value = response.data.data; 
     } catch (error) {
         console.error("Error al cargar comentarios:", error);
@@ -63,6 +66,22 @@ const cargarTecnologias = async () => {
 
 };
 
+const servicios = ref([]);
+
+const cargarServicios = async () => {
+
+  try{
+
+    const response = await axios.get("/api/servicios");
+    servicios.value = response.data.data;
+    console.log(servicios.value);
+
+  } catch (error){
+    console.error("Error al cargar los servicios:", error);
+  }
+
+};
+
 
 const tecnologiaSeleccionada = ref(null);
 
@@ -72,8 +91,9 @@ const seleccionarTecnologia = (tecnologia) => {
 
 
 onMounted(() => {
+   cargarServicios();
     cargarComentarios();
-    cargarTecnologias();
+     cargarTecnologias();
 });
 
 </script>
@@ -102,7 +122,7 @@ onMounted(() => {
 
     <h3 class="text-xl mb-10">Apasionado por la tecnologia, el diseno y solucion de problemas a traves del codigo. En este espacio muestro quien soy, que hago y como puedo ayudarte.</h3>
 
-    <h1 id="frasesField" class="text-3xl mb-12 text-purple-300">Me encantaria trabajar juntos!</h1>
+    <h1 id="frasesField" class="text-3xl mb-12 text-emerald-700">Me encantaria trabajar juntos!</h1>
 
     <div class="flex justify-center gap-8">
 
@@ -236,7 +256,38 @@ onMounted(() => {
   <!-- CONTENIDO SERVICIOS   -->
 
   <br>
-  <div class="text-center">Aqui va el contenido</div><br> 
+
+  <div class="grid grid-cols-12">
+
+    <div class="col-span-1"></div>
+
+    <div class="col-span-9">
+
+      <h2 class="text-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium reprehenderit animi ut reiciendis iusto, voluptates et. Nostrum excepturi saepe ipsa provident sint laboriosam, libero molestiae pariatur, molestias similique cum in.</h2>
+
+      <br>
+
+      <div class="flex overflow-auto p-5 border-e-amber-50">
+      <div class="  gap-6"></div>
+
+      <CardServicio v-for="servicio in servicios"
+      :nombre="servicio.nombre"
+      :descripcion="servicio.descripciones"
+      class="flex-shrink-0 w-90"
+      />
+
+    </div>
+
+    <br>
+
+</div>
+
+    <div class="col-span-2"></div>
+
+
+  </div>
+  <br>
+
 <!-- FIN SERVICIOS   -->
 
 

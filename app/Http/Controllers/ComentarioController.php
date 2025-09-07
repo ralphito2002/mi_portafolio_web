@@ -78,4 +78,15 @@ class ComentarioController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Comentario eliminado con Exito!'], 200);
     }
+
+
+    public function ultimosComentarios(){
+
+        $ultimosComentarios = Comentario::orderBy('id_comentario', 'desc')
+    ->take(8)
+    ->get();
+
+        return response()->json(['success' => true, 'message' => 'Lista de ultimos comentarios obtenida con exito!', 'data' => $ultimosComentarios], 200);
+
+    }
 }

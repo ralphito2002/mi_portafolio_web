@@ -19,6 +19,7 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('proyectos', ControllerProyecto::class);
 Route::apiResource('comentarios', ComentarioController::class);
+Route::get('/ultimosComentarios', [ComentarioController::class, 'ultimosComentarios']);
 Route::apiResource('datosPersonales', ControllerDatosPersonales::class);
 Route::apiResource('tecnologias', ControllerTecnologia::class);
 Route::apiResource('servicios', ControllerServicio::class);
@@ -27,3 +28,4 @@ Route::apiResource('admins', AdminController::class);
 Route::apiResource('curriculums', ControllerCurriculum::class);
 Route::apiResource('proyectoTecnologia', ControllerProyectoTecnologia::class);
 Route::post('/proyectoTecnologia/delete', [ControllerProyectoTecnologia::class, 'desvincularRelacion']);
+
