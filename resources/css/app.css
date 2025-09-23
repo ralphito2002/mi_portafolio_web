@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
+@import'aive/chatbot/style-css';
 @import 'tw-animate-css';
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -7,7 +8,8 @@
 
 
 
-/* ESTILOS GLOBALES */
+
+/* import  '@aivue/chatbot/style.css' ESTILOS GLOBALES */
 
 .routerNavBar{
 

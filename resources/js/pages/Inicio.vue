@@ -19,6 +19,16 @@ const frases = [
   "Cuarta frase"
 ];
 
+import { AIClient } from '@aivue/core'
+import { AiChatWindow } from '@aivue/chatbot'
+import PresentacionProyectos from '@/components/ui/PresentacionProyectos.vue';
+
+
+const aiClient = new AIClient({
+  provider: 'openai',
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  model: 'gpt-4o'
+  });
 
 
 function cambiarFrase() {
@@ -267,13 +277,13 @@ onMounted(() => {
 
       <br>
 
-      <div class="flex overflow-auto p-5 border-e-amber-50">
-      <div class="  gap-6"></div>
+      <div class="flex overflow-auto py-8 border-e-amber-50">
+
 
       <CardServicio v-for="servicio in servicios"
       :nombre="servicio.nombre"
       :descripcion="servicio.descripciones"
-      class="flex-shrink-0 w-90"
+      class="flex-shrink-0 w-85"
       />
 
     </div>
@@ -282,7 +292,9 @@ onMounted(() => {
 
 </div>
 
-    <div class="col-span-2"></div>
+    <div class="col-span-2  flex justify-start items-center">
+      <i class="fa-solid fa-caret-right fa-xl"></i>
+    </div>
 
 
   </div>
@@ -301,8 +313,27 @@ onMounted(() => {
 
   <!-- CONTENIDO PROYECTOS   -->
 
-  <br>
-  <div class="text-center">Aqui va el contenido</div><br><br><br><br><br><br>
+  <div class="grid grid-cols-12">
+
+    <div class="col-span-1"></div>
+    <div class="col-span-3">
+
+      holaaaaa
+
+    </div>
+    <div class="col-span-6 h-130">
+
+      <PresentacionProyectos/>
+
+
+    </div>
+    <div class="col-span-2"></div>
+
+
+
+  </div>
+
+ 
    
   </div>
 <!-- FIN PROYECTOS   -->
@@ -324,7 +355,7 @@ onMounted(() => {
     <div class="col-span-6 px-10 ">
 
       <div>
-      <h3 class="text-md text-orange-200 mb-2">Front-End:</h3>
+      <h3 class="text-md text-orange-200 mb-4">Front-End:</h3>
 
       <div class="flex gap-7">
       <img
@@ -333,9 +364,9 @@ onMounted(() => {
             :src="`/icons/tecnologias/${tecnologia.icono}`"
             class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
             :class="{
-              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400 animate-bounce': 
                 tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
-              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)] hover:animate-pulse': 
                 tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
             }"
             @click="seleccionarTecnologia(tecnologia)"
@@ -346,7 +377,7 @@ onMounted(() => {
       
       <br>
 
-      <h3 class="text-md text-orange-200 mb-2">Back-End:</h3>
+      <h3 class="text-md text-orange-200 mb-4">Back-End:</h3>
 
       <div class="flex gap-7">
       <img
@@ -355,19 +386,20 @@ onMounted(() => {
             :src="`/icons/tecnologias/${tecnologia.icono}`"
             class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
             :class="{
-              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400 animate-bounce': 
                 tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
-              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)] hover:animate-pulse': 
                 tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
             }"
             @click="seleccionarTecnologia(tecnologia)"
           />
+      
       </div>
 
 
       <br>
 
-      <h3 class="text-md text-orange-200 mb-2">Bases de datos:</h3>
+      <h3 class="text-md text-orange-200 mb-4">Bases de datos:</h3>
 
       <div class="flex gap-7">
       <img
@@ -376,9 +408,9 @@ onMounted(() => {
             :src="`/icons/tecnologias/${tecnologia.icono}`"
             class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
             :class="{
-              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400 animate-bounce': 
                 tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
-              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)] hover:animate-pulse': 
                 tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
             }"
             @click="seleccionarTecnologia(tecnologia)"
@@ -387,7 +419,7 @@ onMounted(() => {
 
       <br>
 
-      <h3 class="text-md text-orange-200 mb-2">Otras herramientas:</h3>
+      <h3 class="text-md text-orange-200 mb-4">Otras herramientas:</h3>
 
       <div class="flex gap-7">
       <img
@@ -396,9 +428,9 @@ onMounted(() => {
             :src="`/icons/tecnologias/${tecnologia.icono}`"
             class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
             :class="{
-              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400': 
+              'scale-110 shadow-[0_0_15px_3px_rgba(41,182,246,0.7)] border-2 border-cyan-400 animate-bounce': 
                 tecnologiaSeleccionada?.id_tecnologia === tecnologia.id_tecnologia,
-              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)]': 
+              'hover:scale-125 hover:shadow-[0_0_10px_2px_rgba(41,182,246,0.5)] hover:animate-pulse': 
                 tecnologiaSeleccionada?.id_tecnologia !== tecnologia.id_tecnologia
             }"
             @click="seleccionarTecnologia(tecnologia)"
@@ -533,3 +565,6 @@ onMounted(() => {
 
 
 </template>
+
+
+

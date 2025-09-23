@@ -11,9 +11,9 @@
 
     <nav class="flex gap-4 p-3 ms-1.5 text-1xl font-semibold justify-center">
       <RouterLink to="/" class="routerNavBar">INICIO</RouterLink>
-      <RouterLink to="/proyectos" class="routerNavBar">SOBRE MI</RouterLink>
-      <RouterLink to="/sobreMi" class="routerNavBar">SERVICIOS</RouterLink>
-      <RouterLink to="/servicios" class="routerNavBar">PROYECTOS</RouterLink>
+      <RouterLink to="/sobreMi" class="routerNavBar">SOBRE MI</RouterLink>
+      <RouterLink to="/servicios" class="routerNavBar">SERVICIOS</RouterLink>
+      <RouterLink to="/proyectos" class="routerNavBar">PROYECTOS</RouterLink>
       <RouterLink to="/tecnologias" class="routerNavBar">TECNOLOGIAS</RouterLink>
       <RouterLink to="/curriculums" class="routerNavBar">CURRICULUMS</RouterLink>
       <RouterLink to="/comentarios" class="routerNavBar">COMENTARIOS</RouterLink>
