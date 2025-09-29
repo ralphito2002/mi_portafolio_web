@@ -6,11 +6,16 @@ import CardComentario from '@/components/ui/card/CardComentario.vue';
 import Dialog from '@/components/ui/dialog/Dialog.vue';
 import CardTecnologia from '@/components/ui/card/CardTecnologia.vue';
 import CardServicio from '@/components/ui/card/CardServicio.vue';
+import DialogProyecto from '@/components/ui/dialog/DialogProyecto.vue';
 
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
+const proyectoSeleccionado = ref(null)
 
+function abrirModal(proyecto) {
+  proyectoSeleccionado.value = proyecto
+}
 
 const frases = [
   "Primera frase",
@@ -49,6 +54,17 @@ function cambiarFrase() {
 }
 
 document.addEventListener("DOMContentLoaded", cambiarFrase);
+
+const proyectos = ref([]);
+
+const cargarProyectos = async () => {
+  try {
+    const response = await axios.get("/api/proyectos");
+    proyectos.value = response.data.data; 
+  } catch (error) {
+    console.error("Error al cargar proyectos:", error);
+  }
+};
 
 const comentarios = ref([]);
 
@@ -103,7 +119,8 @@ const seleccionarTecnologia = (tecnologia) => {
 onMounted(() => {
    cargarServicios();
     cargarComentarios();
-     cargarTecnologias();
+     cargarTecnologias(); 
+      cargarProyectos();
 });
 
 </script>
@@ -307,24 +324,71 @@ onMounted(() => {
 
 
 <!--  PROYECTOS   -->
-<div class="backdrop-blur-md">
+<div class="backdrop-blur-md ">
 
 <EncabezadoSeccion>Proyectos</EncabezadoSeccion>
 
   <!-- CONTENIDO PROYECTOS   -->
 
-  <div class="grid grid-cols-12">
+  <div class="grid grid-cols-12 gap-4">
 
     <div class="col-span-1"></div>
     <div class="col-span-3">
 
-      holaaaaa
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos beatae harum alias quae. Beatae enim dignissimos dolores amet optio? Quia, consequuntur assumenda alias aut deleniti inventore. Tempora iusto impedit neque!
+      <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est aut magnam totam, odio repellat ut dignissimos repellendus dolorem libero sunt ea distinctio! Ad autem maxime nam voluptatem ipsa, quasi eum.
+      backdrop-brightness-30
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae omnis adipisci dolorum autem quod. Quibusdam ipsa nobis fuga ab consectetur, facere reprehenderit culpa, voluptatem deserunt iure ipsam, cum sed nostrum?
+      <br><br>
+
+      <a href="/proyectos"><Button class="w-full">Ver seccion de proyectos</Button></a>
+
+
+       <DialogProyecto 
+        v-if="proyectoSeleccionado" 
+        :key="id_proyecto"
+        :titulo="proyectoSeleccionado.titulo"
+        :descripcion="proyectoSeleccionado.descripcion"
+        :rol="proyectoSeleccionado.rol"
+        :fecha_finalizacion="proyectoSeleccionado.fecha_finalizacion"></DialogProyecto>
+
 
     </div>
-    <div class="col-span-6 h-130">
+    <div class="col-span-6 px-15 h-130">
 
-      <PresentacionProyectos/>
+      <div class="p-2 w-full border-2 border-dashed border-gray-400 text-gray-100 animate-pulse rounded-lg text-center">Selecciona un proyecto para ver su informacion</div>
 
+      <div class="flex justify-center items-center mt-4">
+
+      <div class="grid grid-cols-3 grid-rows-3 gap-5">
+
+        <div v-for="proyecto in proyectos" :key="id_proyecto" 
+       @click="abrirModal(proyecto)"
+            >
+<button  command="show-modal" commandfor="dialogProyecto">
+<div class=" overflow-hidden border-2 border-turquesaBtnBorder group hover:shadow-[0_0_12px_3px_rgba(34,211,238,0.8)] cursor-pointer rounded-lg bg-turquesaBtnBg ">  
+  
+  <div class="w-full h-40 overflow-hidden mx-auto bg-amber-400">
+  <img class="object-cover h-full w-full rounded-t-lg" 
+       src="/images/fondos/fondo2.png" alt="" />
+</div>
+
+    <div class=" border-t-turquesaBtnBorder border-t-2 group-hover:bg-turquesaBtnBg">
+            <h5 class="text-md font-extralight p-3 text-white text-center">{{proyecto.titulo}}</h5>
+    </div>
+</div>
+</button>
+
+</div>
+
+
+
+
+
+
+
+      </div>
+      </div>
 
     </div>
     <div class="col-span-2"></div>
