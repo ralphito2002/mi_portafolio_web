@@ -57,6 +57,11 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0 } // siempre mostrar desde arriba
+  }
 });
+
+
 
 export default router;

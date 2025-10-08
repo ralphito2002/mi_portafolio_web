@@ -1,5 +1,5 @@
 <template>
-  <div class="group group-hover:transition-discrete border-3 hover:shadow-[0_0_30px_5px_rgba(100,100,100,100)] hover:border-turquesaBtnBorder border-turquesaBtnBg rounded-ee-none rounded-2xl w-80 h-full overflow-hidden mx-5 ">
+  <div class="group group-hover:transition-discrete border-3 hover:shadow-[0_0_30px_5px_rgba(100,100,100,100)] hover:border-turquesaBtnBorder border-turquesaBtnBg rounded-2xl w-80 h-full overflow-hidden mx-5 ">
   
     <div class="bg-turquesaBtnBg/30 duration-300 group-hover:bg-turquesaBtnBg">
 

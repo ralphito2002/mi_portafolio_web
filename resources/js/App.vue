@@ -1,6 +1,6 @@
 <template>
   <div id="" :class="temaActual" class="min-h-screen bg-black text-white contenedorVue scrollable">
-    <div class="bg-gradient-to-r from-black from-74% to-transparent to-90%">
+    <div class="bg-gradient-to-r from-black from-74% to-transparent to-90% ">
 
 
     
@@ -52,9 +52,9 @@
 
 <!-- MAIN -->
 
-    <div class="">
+    <Transition name="page-fade" mode="out-in">
       <RouterView />
-    </div>
+    </Transition>
 
 <!-- FIN DEL MAIN -->
 
@@ -185,6 +185,8 @@ hover:scale-98 hover:border-2 hover:border-cyan-300 hover:bg-cyan-900 hover:whit
 import { ref, computed } from 'vue'
 import Button from '@/components/ui/button/Button.vue'
 
+const currentSection = ref('inicio'); 
+
 let contador = ref(0);
 const temas = ["tema1", "tema2", "tema3", "tema4","tema5","tema6","tema7"];
 
@@ -194,4 +196,27 @@ const cambiarTema = () => {
 
 const temaActual = computed(() => temas[contador.value]);
 </script>
+
+
+<style>
+.page-fade-enter-active, .page-fade-leave-active {
+  transition: opacity 1.5s ease, transform 2s ease;
+}
+.page-fade-enter-from {
+  opacity: 0;
+  transform: translateX(40px);
+}
+.page-fade-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+.page-fade-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+.page-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+</style>
 

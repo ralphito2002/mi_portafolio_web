@@ -24,18 +24,6 @@ const frases = [
   "Cuarta frase"
 ];
 
-import { AIClient } from '@aivue/core'
-import { AiChatWindow } from '@aivue/chatbot'
-import PresentacionProyectos from '@/components/ui/PresentacionProyectos.vue';
-
-
-const aiClient = new AIClient({
-  provider: 'openai',
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  model: 'gpt-4o'
-  });
-
-
 function cambiarFrase() {
   const frasesField = document.getElementById("frasesField");
   let frase = 0;
@@ -87,7 +75,7 @@ const cargarTecnologias = async () => {
     console.log(tecnologias.value);
 
   } catch (error) {
-    console.error("Error al cargar comentarios:", error);
+    console.error("Error al cargar tecnologias:", error);
   }
 
 };
@@ -100,10 +88,9 @@ const cargarServicios = async () => {
 
     const response = await axios.get("/api/servicios");
     servicios.value = response.data.data;
-    console.log(servicios.value);
 
   } catch (error){
-    console.error("Error al cargar los servicios:", error);
+    console.error("Error al cargar servicios:", error);
   }
 
 };
@@ -137,7 +124,7 @@ onMounted(() => {
 
  <!--  PARTE IZQUIERDA - TITULOS/BOTONES  -->
 
-  <div class="col-span-5 text-center">
+  <div class="col-span-5 text-center ">
     
     <h3 class="text-lg mb-5 text-cyan-200 underline underline-offset-8">Portafolio profesional WEB</h3>
 
@@ -201,7 +188,7 @@ onMounted(() => {
 <!--  SOBRE MI   -->
 <div class="backdrop-blur-md">
 
- <EncabezadoSeccion>Sobre mi</EncabezadoSeccion>
+ <EncabezadoSeccion titulo="Sobre Mi"></EncabezadoSeccion>
 
 
   <!-- CONTENIDO SOBRE MI   -->
@@ -278,7 +265,7 @@ onMounted(() => {
 
 
 <!--  SERVICIOS   -->
-<EncabezadoSeccion>Servicios</EncabezadoSeccion>
+<EncabezadoSeccion titulo="Servicios"></EncabezadoSeccion>
 
   <!-- CONTENIDO SERVICIOS   -->
 
@@ -326,11 +313,11 @@ onMounted(() => {
 <!--  PROYECTOS   -->
 <div class="backdrop-blur-md ">
 
-<EncabezadoSeccion>Proyectos</EncabezadoSeccion>
+<EncabezadoSeccion titulo="Proyectos"></EncabezadoSeccion>
 
   <!-- CONTENIDO PROYECTOS   -->
 
-  <div class="grid grid-cols-12 gap-4">
+  <div class="grid grid-cols-12 gap-4 p-5">
 
     <div class="col-span-1"></div>
     <div class="col-span-3">
@@ -346,11 +333,14 @@ onMounted(() => {
 
        <DialogProyecto 
         v-if="proyectoSeleccionado" 
-        :key="id_proyecto"
+        :key="proyectoSeleccionado.id_proyecto"
         :titulo="proyectoSeleccionado.titulo"
         :descripcion="proyectoSeleccionado.descripcion"
+        :imagen="proyectoSeleccionado.imagen"
         :rol="proyectoSeleccionado.rol"
-        :fecha_finalizacion="proyectoSeleccionado.fecha_finalizacion"></DialogProyecto>
+        :fecha_finalizacion="proyectoSeleccionado.fecha_finalizacion"
+        :tecnologias="proyectoSeleccionado.tecnologias"
+        ></DialogProyecto>
 
 
     </div>
@@ -360,9 +350,9 @@ onMounted(() => {
 
       <div class="flex justify-center items-center mt-4">
 
-      <div class="grid grid-cols-3 grid-rows-3 gap-5">
+      <div class="grid grid-rows-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <div v-for="proyecto in proyectos" :key="id_proyecto" 
+        <div v-for="proyecto in proyectos" :key="proyecto.id_proyecto" 
        @click="abrirModal(proyecto)"
             >
 <button  command="show-modal" commandfor="dialogProyecto">
@@ -370,7 +360,7 @@ onMounted(() => {
   
   <div class="w-full h-40 overflow-hidden mx-auto bg-amber-400">
   <img class="object-cover h-full w-full rounded-t-lg" 
-       src="/images/fondos/fondo2.png" alt="" />
+       :src="`/images/fondos/${proyecto.imagen}`" alt="imagenProyecto" />
 </div>
 
     <div class=" border-t-turquesaBtnBorder border-t-2 group-hover:bg-turquesaBtnBg">
@@ -407,7 +397,7 @@ onMounted(() => {
 <!--  TECNOLOGIAS   -->
 <div class="backdrop-brightness-30">
 
-  <EncabezadoSeccion>Tecnologias</EncabezadoSeccion>
+  <EncabezadoSeccion titulo="Tecnologias"></EncabezadoSeccion>
 
   <!-- CONTENIDO TECNOLOGIAS   -->
 
@@ -518,8 +508,7 @@ onMounted(() => {
       />
       <div
         v-else
-        class="border-2 h-full border-dashed border-gray-600 text-gray-400 p-6 text-center rounded-lg"
-      >
+        class="border-2 h-full border-dashed animate-pulse border-gray-600 text-gray-400 p-6 flex justify-center items-center text-center rounded-lg">
         Selecciona una tecnología para ver los detalles
       </div>
     </div>
@@ -563,7 +552,7 @@ onMounted(() => {
 <div class="">
 
   
-<EncabezadoSeccion>Comentarios</EncabezadoSeccion>
+<EncabezadoSeccion titulo="Comentarios"></EncabezadoSeccion>
 
   <!-- CONTENIDO COMENTARIOS   -->
   <br>
@@ -574,7 +563,7 @@ onMounted(() => {
     <div class="col-span-9">
 
 
-   <div class="grid grid-rows-2 overflow-x-auto gap-6 px-2 py-10">
+   <div class="grid grid-rows-2 overflow-x-auto gap-8 px-2 py-10">
   <!-- Fila 1 -->
   <div class="flex gap-6">
     <CardComentario
@@ -630,5 +619,9 @@ onMounted(() => {
 
 </template>
 
+<style>
+
+
+</style>
 
 

@@ -1,11 +1,11 @@
 <template>
 
-<el-dialog>
+
   <dialog id="modalNuevoComentario" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop-opacity-85 z-3">
-    <el-dialog-backdrop class="fixed inset-0 bg-black/80 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+    <div class="fixed inset-0 bg-black/80 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></div>
 
     <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
-      <el-dialog-panel class="relative transform overflow-hidden border-2 border-turquesaBtnBorder rounded-lg bg-turquesaBtnBg text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all hover:shadow-[0_0_25px_5px_rgba(41,158,154,0.7)] data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+      <div class="relative transform overflow-hidden border-2 border-turquesaBtnBorder rounded-lg bg-turquesaBtnBg text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all hover:shadow-[0_0_25px_5px_rgba(41,158,154,0.7)] data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
         <div class="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
             <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-500/10 sm:mx-0 sm:size-10">
@@ -66,10 +66,10 @@
              <button @comentario-creado="cargarComentarios"  type="button" command="close" commandfor="modalNuevoComentario" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-800/20 border-2 border-red-800/80 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-red-900/90 hover:border-red-500 hover:shadow-[0_0_20px_3px_rgba(220,38,38,0.7)] sm:mt-0 sm:w-auto">Cancelar</button>
 
         </div>
-      </el-dialog-panel>
+      </div>
     </div>
   </dialog>
-</el-dialog>
+
 
 <Alert
       :mostrar="mostrarAlerta"
@@ -152,16 +152,16 @@ const crearComentario = async () => {
 
     }
   } catch (error) {
+
+    modal.close();
+
     // Mostrar alerta de error
+    
     tipoAlerta.value = "error";
     tituloAlerta.value = "¡Ups! Algo salió mal";
     mensajeAlerta.value = "Tu comentario no pudo ser almacenado. Inténtalo de nuevo.";
     mostrarAlerta.value = true;
-
-    // Ocultamos automáticamente la alerta de error
-    setTimeout(() => {
-      mostrarAlerta.value = false;
-    }, 2500);
+    
   } finally {
     cargando.value = false;
   }

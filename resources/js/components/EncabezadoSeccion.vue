@@ -13,9 +13,9 @@
   <div class="col-span-1 flex items-center">
     <div class="h-1 flex-1 bg-turquesaBtnText"></div>
   </div>
-  <div class="col-span-2 text-3xl text-turquesaBtnText text-center"><slot></slot></div>
+  <div class="col-span-2 text-3xl text-turquesaBtnText text-center">{{titulo}}</div>
   <div class="col-span-6 flex items-center">
-    <div class="h-1 flex-1 bg-turquesaBtnText"></div>
+    <div class="h-1 flex-1 bg-turquesaBtnText animate-pulse"></div>
   </div>
 
   <div class="col-span-3"></div>
@@ -24,7 +24,8 @@
 </template>
 
 <script setup>
-defineProps({
+
+const props = defineProps({
   titulo: {
     type: String,
     required: true

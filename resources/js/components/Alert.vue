@@ -22,7 +22,7 @@
           </div>
           <div
             v-if="tipo === 'error'"
-            class="bg-red-500 p-3 rounded-full"
+            class="bg-red-900 p-3 rounded-full"
           >
             ❌
           </div>

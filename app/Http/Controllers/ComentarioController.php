@@ -10,7 +10,7 @@ class ComentarioController extends Controller
 {
     public function index()
     {
-        $comentario = Comentario::all();
+        $comentario = Comentario::orderBy('id_comentario', 'desc')->get();
 
         return response()->json(['success' => true, 'message' => 'Lista de comentarios obtenida con exito!', 'data' => $comentario], 200);
     }
