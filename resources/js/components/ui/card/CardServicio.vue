@@ -14,9 +14,9 @@
     <hr class="border border-t-stone-500" />
 
     <!-- DESCRIPCIÓN -->
-    <div class="bg-black p-6 text-sm  overflow-auto text-gray-200/40 duration-300 group-hover:text-gray-200">
+    <div class="bg-black p-6 text-sm scrollable text-gray-200/40 duration-300 group-hover:text-gray-200">
       
-        <ul class="px-4 h-80 overflow-auto">
+        <ul class="px-4 h-80 scrollable">
             <li v-for="descripcion in descripcion" class="list-disc py-3 text-md">{{descripcion.descripcion}}</li>
         </ul>
      

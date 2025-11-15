@@ -2,7 +2,7 @@
 
     
         <dialog id="dialogProyecto" aria-labelledby="dialog-title"
-            class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop-opacity-85 z-3">
+            class="fixed inset-0 size-auto max-h-none max-w-none scrollable bg-transparent backdrop-opacity-85 z-3">
             <div
                 class="fixed inset-0 bg-black/80 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></div>
 
@@ -74,7 +74,6 @@
 
 
 <script setup>
-import { AlertTriangle, Key } from 'lucide-vue-next';
 
 
 const props = defineProps({
@@ -86,7 +85,5 @@ const props = defineProps({
     tecnologias: Object
 
 });
-
-
 
 </script>

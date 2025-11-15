@@ -15,7 +15,7 @@ import Button from '@/components/ui/button/Button.vue';
 
     <div><h2 class="text-turquesaBtnText animate-pulse my-10 items-center flex justify-center text-5xl">Sobre Mi</h2></div>
     
-    <div class="h-110 overflow-auto p-5">
+    <div class="h-110 scrollable p-5">
     
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facilis mollitia similique atque inventore omnis iusto iste optio temporibus, tempora alias laborum eos velit, totam, sapiente eius ipsam error doloremque.
 
@@ -51,7 +51,7 @@ import Button from '@/components/ui/button/Button.vue';
   
   <div class="col-span-5 m-10 px-5">
 
-    <Card class="backdrop-blur-md p-6 overflow-auto h-120"> 
+    <Card class="bg-black p-6 scrollable h-120"> 
 
 
   <div class="">

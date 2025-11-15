@@ -8,6 +8,8 @@ import Tecnologias from '@/pages/Tecnologias.vue';
 import Servicios from '@/pages/Servicios.vue';
 import Curriculums from '@/pages/Curriculums.vue';
 import Comentarios from '@/pages/Comentarios.vue';
+import { Contact } from 'lucide-vue-next';
+import Contactame from '@/pages/Contactame.vue';
 
 
 // Definimos las rutas con tipado
@@ -29,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
   path: '/proyectos',
-    name: 'protectos',
+    name: 'proyectos',
     component: Proyectos,
   },
    {
@@ -43,14 +45,14 @@ const routes: Array<RouteRecordRaw> = [
     component: Curriculums,
   },
   {
-  path: '/comentarios',
+  path:  '/comentarios',
     name: 'comentarios',
     component: Comentarios,
   },
   {
-  path: '/contactame',
+  path:  '/contactame',
     name: 'contactame',
-    component: Tecnologias,
+    component: Contactame,
   },
 ];
 

@@ -113,7 +113,7 @@ onMounted(() => {
 </script>
 
 <template>
-  
+  <section key="inicio" class="page">
 
 <!--  PRESENTACION   -->
 
@@ -281,7 +281,7 @@ onMounted(() => {
 
       <br>
 
-      <div class="flex overflow-auto py-8 border-e-amber-50">
+      <div class="flex scrollable py-8 border-e-amber-50">
 
 
       <CardServicio v-for="servicio in servicios"
@@ -353,8 +353,8 @@ onMounted(() => {
       <div class="grid grid-rows-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
         <div v-for="proyecto in proyectos" :key="proyecto.id_proyecto" 
-       @click="abrirModal(proyecto)"
-            >
+       @click="abrirModal(proyecto)">
+       
 <button  command="show-modal" commandfor="dialogProyecto">
 <div class=" overflow-hidden border-2 border-turquesaBtnBorder group hover:shadow-[0_0_12px_3px_rgba(34,211,238,0.8)] cursor-pointer rounded-lg bg-turquesaBtnBg ">  
   
@@ -414,7 +414,7 @@ onMounted(() => {
       <div class="flex gap-7">
       <img
             v-for="tecnologia in tecnologias.filter(t => t.categoria === 'frontend')"
-            :key="tecnologia.id"
+            :key="tecnologia.id_tecnologia"
             :src="`/icons/tecnologias/${tecnologia.icono}`"
             class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
             :class="{
@@ -436,7 +436,7 @@ onMounted(() => {
       <div class="flex gap-7">
       <img
             v-for="tecnologia in tecnologias.filter(t => t.categoria === 'backend')"
-            :key="tecnologia.id"
+            :key="tecnologia.id_tecnologia"
             :src="`/icons/tecnologias/${tecnologia.icono}`"
             class="w-14 h-14 cursor-pointer rounded-2xl transition-all duration-300 ease-in-out"
             :class="{
@@ -557,13 +557,13 @@ onMounted(() => {
   <!-- CONTENIDO COMENTARIOS   -->
   <br>
 
-  <div class="grid grid-cols-12">
+  <div class="grid grid-cols-12 ">
 
     <div class="col-span-1"></div>
     <div class="col-span-9">
 
 
-   <div class="grid grid-rows-2 overflow-x-auto gap-8 px-2 py-10">
+   <div class="grid grid-rows-2 scrollable gap-8 px-2 py-10">
   <!-- Fila 1 -->
   <div class="flex gap-6">
     <CardComentario
@@ -616,7 +616,7 @@ onMounted(() => {
 <!-- FIN COMENTARIOS   -->
 
 
-
+</section>
 </template>
 
 <style>

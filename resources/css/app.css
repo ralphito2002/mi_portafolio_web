@@ -64,13 +64,10 @@
 /* Contenedor scrollable */
 .scrollable {
   overflow-x: auto; /* horizontal */
-  overflow-y: hidden; /* vertical, opcional */
+  overflow-y: auto; /* vertical, opcional */
 }
 
 /* Para Webkit (Chrome, Edge, Safari) */
-.scrollable::-webkit-scrollbar {
-  height: 5px; /* altura del scrollbar horizontal */
-}
 
 .scrollable::-webkit-scrollbar-track {
   background: #0E2322; /* fondo del track */
@@ -96,6 +93,11 @@
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 8px;
+}
+
+.tecnologias::-webkit-scrollbar {
+  width: 44px;
+  height: 44px;
 }
 
 html::-webkit-scrollbar-track,

@@ -43,7 +43,7 @@ onMounted(() => {
 
     <div><h2 class="text-turquesaBtnText animate-pulse my-10 text-center text-5xl ">Servicios y habilidades</h2></div>
     
-    <div class="h-60 overflow-auto">
+    <div class="h-60 scrollable">
     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi reprehenderit maiores incidunt id impedit perferendis modi enim possimus. Commodi aut amet doloremque. Quam, nam et. Sint consectetur eveniet tenetur aliquid?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus corporis tempora minima deleniti, earum similique ullam voluptatem porro iusto soluta maxime rerum enim ipsam eligendi tenetur atque, sit repudiandae?
 
     <br><br>
@@ -80,7 +80,7 @@ onMounted(() => {
 
   <div class="col-span-1"></div>
   
-  <div class="col-span-5 m-10 overflow-auto h-140 px-5">
+  <div class="col-span-5 m-10 scrollable h-140 px-5">
 
   
 
@@ -89,7 +89,7 @@ onMounted(() => {
   tag="div"
   class="">
 
-        <div class="w-full border border-turquesaBtnBorder rounded-2xl my-2 p-4 shadow-[0_0_20px_5px_rgba(100,100,100,0.7)] hover:shadow-[0_0_30px_10px_rgba(100,100,100,1)] duration-300"
+        <div class="w-full border backdrop-blur-2xl border-turquesaBtnBorder rounded-2xl my-2 p-4 shadow-[0_0_20px_5px_rgba(100,100,100,0.7)] hover:shadow-[0_0_30px_10px_rgba(100,100,100,1)] duration-300"
           v-for="servicio in serviciosFiltrados"
           :key="servicio.id_servicio">
 

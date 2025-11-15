@@ -60,7 +60,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis enim nisi 
            <TransitionGroup
   name="fade"
   tag="div"
-  class="col-span-5 h-150 gap-6 p-6 m-6 overflow-auto"
+  class="col-span-5 h-150 gap-6 p-6 m-6 scrollable"
 >
   <CardComentario
     v-for="comentario in comentarios"
