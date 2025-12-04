@@ -72,24 +72,25 @@ onMounted(() => {
     </div>
 </div>
 
-<br>
 
-    <input v-model="filtroServicios" type="text" placeholder="Buscar servicio..." class="w-full p-2 rounded-md border border-turquesaBtnBorder bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-turquesaBtnBorder focus:border-transparent">
-    
   </div>
 
   <div class="col-span-1"></div>
   
-  <div class="col-span-5 m-10 scrollable h-140 px-5">
+  <div class="col-span-5 h-145 overflow-hidden">
 
-  
+    <div class="mx-10 mt-10 mb-5 px-5">
+      <input v-model="filtroServicios" type="text" placeholder="Buscar servicio..." class="w-full p-2 rounded-md border border-turquesaBtnBorder bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-turquesaBtnBorder focus:border-transparent">
+    
+    </div>
+   
 
     <TransitionGroup
   name="fade"
   tag="div"
-  class="">
+  class="mx-10 scrollable h-full p-6">
 
-        <div class="w-full border backdrop-blur-2xl border-turquesaBtnBorder rounded-2xl my-2 p-4 shadow-[0_0_20px_5px_rgba(100,100,100,0.7)] hover:shadow-[0_0_30px_10px_rgba(100,100,100,1)] duration-300"
+        <div class="w-full border backdrop-blur-2xl border-turquesaBtnBorder rounded-2xl mb-2 p-4 shadow-[0_0_15px_5px_rgba(100,100,100,0.7)] hover:shadow-[0_0_20px_10px_rgba(100,100,100,1)] duration-300"
           v-for="servicio in serviciosFiltrados"
           :key="servicio.id_servicio">
 

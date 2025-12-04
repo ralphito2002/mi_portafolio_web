@@ -5,6 +5,7 @@ use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ControllerCurriculum;
 use App\Http\Controllers\ControllerDatosPersonales;
 use App\Http\Controllers\ControllerDescripcionServicios;
+use App\Http\Controllers\ControllerHabilidades;
 use App\Http\Controllers\ControllerProyecto;
 use App\Http\Controllers\ControllerProyectoTecnologia;
 use App\Http\Controllers\ControllerServicio;
@@ -28,4 +29,5 @@ Route::apiResource('admins', AdminController::class);
 Route::apiResource('curriculums', ControllerCurriculum::class);
 Route::apiResource('proyectoTecnologia', ControllerProyectoTecnologia::class);
 Route::post('/proyectoTecnologia/delete', [ControllerProyectoTecnologia::class, 'desvincularRelacion']);
+Route::apiResource('habilidades', ControllerHabilidades::class);
 

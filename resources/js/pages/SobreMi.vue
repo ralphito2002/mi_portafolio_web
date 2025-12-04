@@ -2,11 +2,47 @@
 
 import Card from '@/components/ui/card/Card.vue';
 import Button from '@/components/ui/button/Button.vue';
+import DialogHabilidades from '@/components/ui/dialog/DialogHabilidades.vue';
+
+import { ref, onMounted } from "vue";
+import axios from "axios";
+
+const habilidadesBlandas= ref([]);
+const habilidadesTecnicas= ref([]);
+
+const cargarHabilidades = async () => {
+    try {
+        const response = await axios.get('/api/habilidades');
+        const data = await response.data.data;
+
+       
+        habilidadesBlandas.value = data.filter(habilidad => habilidad.tipo === 'blanda');
+        habilidadesTecnicas.value = data.filter(habilidad => habilidad.tipo === 'tecnica');
+
+    } catch (error) {
+        console.error('Error al cargar las habilidades:', error);
+    }
+};
+
+let habilidadesSeleccionadas = ref(null);
+
+const btnHabilidadesBlandas = () => {
+    habilidadesSeleccionadas.value = 'blandas';
+};
+const btnHabilidadesTecnicas = () => {
+    habilidadesSeleccionadas.value = 'tecnicas';
+};
+
+onMounted(() => {
+    cargarHabilidades();
+});
 
 </script>
 
 
 <template>
+  <section key="sobreMi" class="page">
+
  
  <div class="grid grid-cols-12">
 
@@ -130,8 +166,9 @@ import Button from '@/components/ui/button/Button.vue';
 <br>
 <div class="flex justify-center gap-6">
 
-      <Button>Habilidades Blandas</Button>
-      <Button>Habilidades tecnicas</Button>
+      <Button @click="btnHabilidadesBlandas" command="show-modal" commandfor="modalHabilidades">Habilidades blandas</Button>
+      <Button @click="btnHabilidadesTecnicas" command="show-modal" commandfor="modalHabilidades">Habilidades tecnicas</Button>
+      
 
 
     </div>
@@ -143,5 +180,15 @@ import Button from '@/components/ui/button/Button.vue';
 
  </div>
 
+ <DialogHabilidades 
+    v-if="habilidadesSeleccionadas === 'blandas'"
+    :habilidades="habilidadesBlandas"
+    tipo="blandas"/>
 
+    <DialogHabilidades 
+    v-if="habilidadesSeleccionadas === 'tecnicas'"
+    :habilidades="habilidadesTecnicas"
+    tipo="tecnicas"/>
+
+</section>
 </template>
