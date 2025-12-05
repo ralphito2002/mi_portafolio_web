@@ -1,6 +1,6 @@
 <script setup>
 import Card from '@/components/ui/card/Card.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, Transition, TransitionGroup } from 'vue';
 import axios from 'axios';
 
 
@@ -73,7 +73,9 @@ onMounted(() => {
 
                         <div class="h-full scrollable p-4">
 
+                            
                             <ul >
+                                <TransitionGroup name="fade" tag="div" mode="">
                                 <li v-for="proyecto in proyectos" :key="proyecto.id_proyecto"
                                 
                                   
@@ -81,9 +83,10 @@ onMounted(() => {
                                     <div v-if="proyectoSeleccionado == proyecto" class="cursor-pointer text-turquesaBtnText my-2 border-2 border-neutral-500 active:bg-turquesaBtnBorder p-3 rounded-md bg-neutral-700 ease-in-out duration-300">{{ proyecto.titulo }}</div>
                                     <div v-else class="cursor-pointer my-2 active:bg-turquesaBtnBorder hover:bg-neutral-600 p-3 hover:text-turquesaBtnText rounded-md bg-neutral-500 ease-in-out duration-300">{{ proyecto.titulo }}</div>
                                     
-                                </li>
+                                </li> 
+                            </TransitionGroup>
                             </ul>
-
+                           
                         </div>
 
                     </div>
@@ -160,7 +163,26 @@ onMounted(() => {
 
     </div>
 
-
-
-
 </template>
+
+<style scoped>
+.page-fade-enter-active, .page-fade-leave-active {
+  transition: opacity 1.5s ease, transform 2s ease;
+}
+.page-fade-enter-from {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.page-fade-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+</style>

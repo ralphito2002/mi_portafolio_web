@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
     
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 h-150">
 
   <div class="col-span-1"></div>
   <div class="col-span-4 ">
@@ -58,7 +58,7 @@ onMounted(() => {
        <TransitionGroup
   name="fade"
   tag="ul"
-  class="list-disc list-inside text-sm ms-15"
+  class="grid grid-cols-2 list-disc list-inside text-md font-bold space-y-2 my-3 w-full"
 >
   <li
     v-for="servicio in servicios"
@@ -77,7 +77,7 @@ onMounted(() => {
 
   <div class="col-span-1"></div>
   
-  <div class="col-span-5 h-145 overflow-hidden">
+  <div class="col-span-5  overflow-hidden">
 
     <div class="mx-10 mt-10 mb-5 px-5">
       <input v-model="filtroServicios" type="text" placeholder="Buscar servicio..." class="w-full p-2 rounded-md border border-turquesaBtnBorder bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-turquesaBtnBorder focus:border-transparent">
@@ -88,7 +88,7 @@ onMounted(() => {
     <TransitionGroup
   name="fade"
   tag="div"
-  class="mx-10 scrollable h-full p-6">
+  class="mx-10  overflow-y-scroll h-122 p-6">
 
         <div class="w-full border backdrop-blur-2xl border-turquesaBtnBorder rounded-2xl mb-2 p-4 shadow-[0_0_15px_5px_rgba(100,100,100,0.7)] hover:shadow-[0_0_20px_10px_rgba(100,100,100,1)] duration-300"
           v-for="servicio in serviciosFiltrados"
