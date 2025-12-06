@@ -87,7 +87,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis enim nisi 
         
 
            <TransitionGroup
-  name="page-fade"
+  name="comentarios-fade"
   tag="div"
   class="col-span-5 h-150 gap-6 p-6 m-6 scrollable"
 >
@@ -117,22 +117,22 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis enim nisi 
 </template>
 
 <style>
-.page-fade-enter-active, .page-fade-leave-active {
+.comentarios-fade-enter-active, .comentarios-fade-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.page-fade-enter-from {
+.comentarios-fade-enter-from {
   opacity: 0;
   transform: translateX(40px);
 }
-.page-fade-enter-to {
+.comentarios-fade-enter-to {
   opacity: 1;
   transform: translateX(0);
 }
-.page-fade-leave-from {
+.comentarios-fade-leave-from {
   opacity: 1;
   transform: translateX(0);
 }
-.page-fade-leave-to {
+.comentarios-fade-leave-to {
   opacity: 0;
   transform: translateX(-10px);
 }

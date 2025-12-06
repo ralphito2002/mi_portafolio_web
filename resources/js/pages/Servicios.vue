@@ -41,7 +41,7 @@ onMounted(() => {
   <div class="col-span-1"></div>
   <div class="col-span-4 ">
 
-    <div><h2 class="text-turquesaBtnText animate-pulse my-10 text-center text-5xl ">Servicios y habilidades</h2></div>
+    <div><h2 class="text-turquesaBtnText animate-pulse my-10 text-center text-5xl ">Servicios</h2></div>
     
     <div class="h-60 scrollable">
     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi reprehenderit maiores incidunt id impedit perferendis modi enim possimus. Commodi aut amet doloremque. Quam, nam et. Sint consectetur eveniet tenetur aliquid?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus corporis tempora minima deleniti, earum similique ullam voluptatem porro iusto soluta maxime rerum enim ipsam eligendi tenetur atque, sit repudiandae?
@@ -86,7 +86,7 @@ onMounted(() => {
    
 
     <TransitionGroup
-  name="fade"
+  name="servicios-fade"
   tag="div"
   class="mx-10  overflow-y-scroll h-122 p-6">
 
@@ -106,7 +106,7 @@ onMounted(() => {
             </div>
 
             <div class="col-span-1 flex justify-end items-center">
-                <button class="bg-blue-500 hover:bg-blue-400 hover:border-none text-white sm text-sm font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                <button class="bg-turquesaBtnBorder cursor-pointer hover:bg-turquesaBtnBorder hover:border-none text-white sm text-sm font-bold py-2 px-4 border-b-4 border-cyan-900 hover:border-blue-500 rounded">
   ver
 </button>
             </div>
@@ -136,22 +136,22 @@ onMounted(() => {
 
 
 <style scoped>
-.page-fade-enter-active, .page-fade-leave-active {
-  transition: opacity 1.5s ease, transform 2s ease;
+.servicios-fade-enter-active, .servicios-fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.page-fade-enter-from {
+.servicios-fade-enter-from {
   opacity: 0;
   transform: translateX(40px);
 }
-.page-fade-enter-to {
+.servicios-fade-enter-to {
   opacity: 1;
   transform: translateX(0);
 }
-.page-fade-leave-from {
+.servicios-fade-leave-from {
   opacity: 1;
   transform: translateX(0);
 }
-.page-fade-leave-to {
+.servicios-fade-leave-to {
   opacity: 0;
   transform: translateX(-10px);
 }
