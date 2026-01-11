@@ -1,15 +1,20 @@
 <template>
-  <div id="" :class="temaActual" class="min-h-screen bg-black text-white contenedorVue scrollable">
-    <div class="bg-gradient-to-r from-black from-74% to-transparent to-90% ">
+
+<div :class="temaActual" class="fixed inset-0 z-0"></div>
+  <div id="" class=" text-white contenedorVue scrollable">
+
+    
+
+    <div class="relative z-5 bg-gradient-to-r from-black/80 from-74% to-transparent to-90% ">
 
 
     
    <!-- NAVBAR -->
 
-    <div class=" fixed grid grid-cols-12 z-[2] bg-black w-full shadow-lg shadow-turquesaBtnBorder">
+    <div class=" fixed grid grid-cols-12 z-[10] bg-black w-full shadow-lg shadow-turquesaBtnBorder">
   <div class="col-span-9">
 
-    <nav class="flex gap-4 p-3 ms-1.5 text-1xl font-semibold justify-center">
+    <nav class="flex gap-4 p-3 ms-1.5 text-sm font-semibold justify-center">
       <RouterLink to="/" class="routerNavBar">INICIO</RouterLink>
       <RouterLink to="/sobreMi" class="routerNavBar">SOBRE MI</RouterLink>
       <RouterLink to="/servicios" class="routerNavBar">SERVICIOS</RouterLink>
@@ -53,7 +58,7 @@
 <!-- MAIN -->
 
     <Transition name="page-fade" mode="out-in">
-      <RouterView />
+      <RouterView class="min-h-150" />
     </Transition>
 
     
@@ -201,7 +206,7 @@ const temaActual = computed(() => temas[contador.value]);
 
 <style>
 .page-fade-enter-active, .page-fade-leave-active {
-  transition: opacity 1.5s ease, transform 2s ease;
+  transition: opacity 0.5s ease, transform 0.6s ease-in;
 }
 .page-fade-enter-from {
   opacity: 0;

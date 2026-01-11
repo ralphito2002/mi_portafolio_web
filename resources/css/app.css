@@ -28,28 +28,63 @@
 
 }
 
+@keyframes arcoiris {
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+@keyframes cambioColor {
+  0%   { filter: hue-rotate(0deg); }
+  70%   { filter: hue-rotate(7deg); }
+  100% { filter: hue-rotate(20deg); }
+}
+
+@keyframes saturar {
+  0%   { filter: saturate(0.5); }
+  100% { filter: saturate(2); }
+}
+
+@keyframes movimiento {
+  0%   { background-position: top; }
+  100% { background-position: bottom; }
+}
+
+@keyframes zoom {
+  0%   { background-size: 130%; }
+  100% { background-size: 100%; }
+}
+
+.bg-arcoiris {
+  animation: arcoiris 12s linear infinite;
+}
+
 
 .tema1 {
-    @apply bg-[url(../../public/images/fondos/fondo1.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1800;
+  @apply bg-[url(../../public/images/fondos/fondo1.jpg)] bg-cover bg-no-repeat bg-right bg-fixed transition-all duration-1000;
+animation: cambioColor 5s alternate infinite;
 }
 .tema2 {
-    @apply bg-[url(../../public/images/fondos/fondo2.png)] bg-contain bg-right bg-fixed ease-in transition-all duration-1500;
-}
+    @apply bg-[url(../../public/images/fondos/fondo2.png)] bg-cover bg-no-repeat bg-right bg-fixed ease-in transition-all duration-1000;
+animation: saturar 10s alternate-reverse infinite;
+  }
 .tema3 {
-    @apply bg-[url(../../public/images/fondos/fondo3.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1500;
+    @apply bg-[url(../../public/images/fondos/fondo3.jpg)] bg-cover bg-right bg-fixed ease-in-out transition-all duration-1000;
 }
 .tema4 {
-    @apply bg-[url(../../public/images/fondos/fondo4.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-500;
-}
+    @apply bg-[url(../../public/images/fondos/fondo4.jpg)] bg-cover bg-right bg-fixed ease-in-out transition-all duration-1000;
+animation: movimiento 17s alternate infinite;
+  }
 .tema5 {
-    @apply bg-[url(../../public/images/fondos/fondo5.jpg)] bg-contain bg-right bg-fixed ease-in transition-all duration-1500;
-}
+    @apply bg-[url(../../public/images/fondos/fondo5.jpg)] bg-cover bg-right bg-fixed ease-in-out transition-all duration-1000;
+animation: zoom 15s alternate infinite;
+  }
 .tema6 {
-    @apply bg-[url(../../public/images/fondos/fondo6.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-1500;
+  animation: arcoiris 20s linear infinite;
+    @apply bg-[url(../../public/images/fondos/fondo6.jpg)] bg-cover bg-right bg-fixed ease-in-out transition-all duration-1000;
 }
 .tema7 {
-    @apply bg-[url(../../public/images/fondos/fondo7.jpg)] bg-contain bg-right bg-fixed ease-in-out transition-all duration-500;
-}
+    @apply bg-[url(../../public/images/fondos/fondo7.jpg)] bg-cover bg-right bg-fixed ease-in-out transition-all duration-500;
+animation: saturar 5s alternate infinite;
+  }
 
 #frasesField {
   opacity: 1;
@@ -197,6 +232,11 @@ body::-webkit-scrollbar-thumb {
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
 }
+
+
+    
+
+    
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

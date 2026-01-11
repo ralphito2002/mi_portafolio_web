@@ -31,6 +31,8 @@ onMounted(() => {
 
 <template>
 
+    <section key="proyectos" class="page">
+
     <div class="grid grid-cols-13">
 
         <div class="col-span-1"></div>
@@ -41,21 +43,23 @@ onMounted(() => {
                 </h2>
             </div>
 
-            <div class="h-110 scrollable p-5">
+            <div class="text-center text-md font-extralight">
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facilis mollitia similique atque
-                inventore omnis iusto iste optio temporibus, tempora alias laborum eos velit, totam, sapiente eius
-                ipsam error doloremque.
+                <p>
+Esta sección reúne los proyectos que he desarrollado y que representan mi crecimiento como programador.
+Cada proyecto muestra distintas habilidades, tecnologías y enfoques que he aplicado para resolver problemas reales.
+                </p>
+                <br>
+
+                <p>Es un espacio donde podrás ver mi estilo de trabajo, mi creatividad y las soluciones que he construido en diferentes etapas de mi aprendizaje.</p>
 
                 <br>
+
+                <p class="font-semibold text-lg">Aquí podrás explorar desde pequeños experimentos hasta sistemas completos que representan mis habilidades actuales.</p>
+
                 <br>
-
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facilis mollitia similique atque
-                inventore omnis iusto iste optio temporibus, tempora alias laborum eos velit, totam, sapiente eius
-                ipsam error doloremque.
-
-
-
+                
+                <p>Cada proyecto cuenta con su descripción, características principales y la tecnología utilizada, para que puedas conocer mejor mi forma de trabajar.</p>
 
             </div>
         </div>
@@ -75,7 +79,7 @@ onMounted(() => {
 
                             
                             <ul >
-                                <TransitionGroup name="fade" tag="div" mode="">
+                                <TransitionGroup name="proyectos-fade" tag="div" mode="">
                                 <li v-for="proyecto in proyectos" :key="proyecto.id_proyecto"
                                 
                                   
@@ -98,7 +102,7 @@ onMounted(() => {
 
                                     <div class="flex items-center p-4 justify-center">
                                         <img class="object-cover w-50 h-30 rounded-2xl"
-                                            :src="`/images/fondos/${proyectoSeleccionado.imagen}`"
+                                            :src="`/storage/proyectos/${proyectoSeleccionado.imagen}`"
                                             alt="imagenProyecto" />
                                     </div>
 
@@ -163,25 +167,27 @@ onMounted(() => {
 
     </div>
 
+    </section>
+
 </template>
 
 <style scoped>
-.page-fade-enter-active, .page-fade-leave-active {
+.proyectos-fade-enter-active, .proyectos-fade-leave-active {
   transition: opacity 1.5s ease, transform 2s ease;
 }
-.page-fade-enter-from {
+.proyectos-fade-enter-from {
   opacity: 0;
   transform: translateY(40px);
 }
-.page-fade-enter-to {
+.proyectos-fade-enter-to {
   opacity: 1;
   transform: translateY(0);
 }
-.page-fade-leave-from {
+.proyectos-fade-leave-from {
   opacity: 1;
   transform: translateY(0);
 }
-.page-fade-leave-to {
+.proyectos-fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
 }

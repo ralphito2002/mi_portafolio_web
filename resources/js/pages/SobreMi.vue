@@ -13,11 +13,9 @@ const habilidadesTecnicas= ref([]);
 const cargarHabilidades = async () => {
     try {
         const response = await axios.get('/api/habilidades');
-        const data = await response.data.data;
-
        
-        habilidadesBlandas.value = data.filter(habilidad => habilidad.tipo === 'blanda');
-        habilidadesTecnicas.value = data.filter(habilidad => habilidad.tipo === 'tecnica');
+        habilidadesBlandas.value = response.data.data.filter(habilidad => habilidad.tipo === 'blanda');
+        habilidadesTecnicas.value = response.data.data.filter(habilidad => habilidad.tipo === 'tecnica');
 
     } catch (error) {
         console.error('Error al cargar las habilidades:', error);
@@ -51,11 +49,11 @@ onMounted(() => {
 
     <div><h2 class="text-turquesaBtnText animate-pulse my-10 items-center flex justify-center text-5xl">Sobre Mi</h2></div>
     
-    <div class="h-110 scrollable p-5">
+    <div class="font-light text-center text-md">
     
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facilis mollitia similique atque inventore omnis iusto iste optio temporibus, tempora alias laborum eos velit, totam, sapiente eius ipsam error doloremque.
-
-    <br>
+      <p> Soy un desarrollador enfocado en crear soluciones web eficientes, funcionales y con una identidad visual única. Me apasiona diseñar interfaces con personalidad, construir sistemas bien estructurados y transformar ideas en experiencias tecnológicas reales.
+Me gusta combinar creatividad con planificación técnica, y disfruto aprender cada día algo nuevo que mejore mi manera de desarrollar.
+   </p>
     <br>
     <br>
 
@@ -70,24 +68,39 @@ onMounted(() => {
     <br>
     <br>
 
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae voluptatem repellat quo, eos id ipsa nulla accusantium? Minus labore eos, vel dolorem tempore ipsa, maiores pariatur modi fugit, eius nostrum!Lorem
+    <p>Actualmente desarrollo proyectos personales como RAAR, un universo digital que mezcla diseño, interacción y funcionalidades avanzadas. También trabajo en mi portafolio profesional y en soluciones a nivel empresarial utilizando Laravel, VueJS y tecnologías modernas.
+</p>
+    
+    <br>
+    <hr>
+    <br>
 
-    <br><br>
-
-    <h4 class="text-amber-200">Objetivo profesional:</h4>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam, velit nobis ipsa aspernatur omnis harum culpa optio at id eaque voluptatum pariatur atque facere exercitationem similique, unde incidunt molestias quos.
-
-    <br><br>
+    <h4 class="text-amber-200 mb-2 underline underline-offset-4 text-center text-lg font-semibold">Objetivo profesional:</h4>
+    <p>Convertirme en un desarrollador web sólido y versátil, capaz de crear aplicaciones completas desde la base de datos y backend, hasta la interfaz visual y experiencia del usuario.
+Mi objetivo es formar parte de proyectos donde pueda aportar valor real, mejorar procesos y seguir creciendo como profesional mientras aplico mis conocimientos en sistemas, diseño web, API REST, arquitectura y desarrollo de interfaces.
+    </p><br>
 
     
 
 </div>
+<hr>
+<br>
+<p class="text-center text-lg font-semibold underline underline-offset-2">Mis habilidades:</p>
+<br>
+<div class="flex justify-center gap-6">
+
+      <Button @click="btnHabilidadesBlandas" command="show-modal" commandfor="modalHabilidades">Habilidades blandas</Button>
+      <Button @click="btnHabilidadesTecnicas" command="show-modal" commandfor="modalHabilidades">Habilidades tecnicas</Button>
+      
+
+
+    </div>
   </div>
   <div class="col-span-1"></div>
   
   <div class="col-span-5 m-10 px-5">
 
-    <Card class="bg-black p-6 scrollable h-120"> 
+    <Card class="bg-black p-6 scrollable "> 
 
 
   <div class="">
@@ -164,14 +177,6 @@ onMounted(() => {
 
 </Card>
 <br>
-<div class="flex justify-center gap-6">
-
-      <Button @click="btnHabilidadesBlandas" command="show-modal" commandfor="modalHabilidades">Habilidades blandas</Button>
-      <Button @click="btnHabilidadesTecnicas" command="show-modal" commandfor="modalHabilidades">Habilidades tecnicas</Button>
-      
-
-
-    </div>
 
   </div>
   <div class="col-span-1"></div>

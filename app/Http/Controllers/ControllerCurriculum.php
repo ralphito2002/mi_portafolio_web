@@ -86,4 +86,41 @@ class ControllerCurriculum extends Controller
 
         return response()->json(['success' => true, 'message' => 'Curriculum eliminado con Exito!'], 200);
     }
+
+    public function verCurriculum($id)
+{
+    $cv = Curriculum::findOrFail($id);
+
+    $path = storage_path("app/public/curriculums/" . $cv->nombre_archivo);
+
+    if (!file_exists($path)) {
+        abort(404, "Archivo no encontrado");
+    }
+
+    $extension = pathinfo($cv->nombre_archivo, PATHINFO_EXTENSION);
+
+return response()->file($path, [
+    'Content-Type' => mime_content_type($path),
+    'Content-Disposition' => 'inline; filename="'.$cv->titulo.'.'.$extension.'"'
+]);
+
+}
+
+
+
+
+    public function descargarCurriculum($id)
+{
+    $cv = Curriculum::findOrFail($id);
+
+    $path = storage_path("app/public/curriculums/" . $cv->nombre_archivo);
+
+    if (!file_exists($path)) {
+        abort(404, "Archivo no encontrado");
+    }
+
+    return response()->download($path, $cv->nombre_archivo);
+}
+
+
 }

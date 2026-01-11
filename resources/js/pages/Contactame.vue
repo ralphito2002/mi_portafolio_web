@@ -1,5 +1,6 @@
 <script setup>
 
+import Alert from '@/components/Alert.vue';
 import Card from '@/components/ui/card/Card.vue';
 import axios from 'axios';
 import { ref } from 'vue';
@@ -9,32 +10,69 @@ const asunto = ref('');
 const correo = ref('');
 const mensaje = ref('');
 
-const enviarCorreo = async () => {
+// Estado de la alerta
+const mostrarAlerta = ref(false);
+const tipoAlerta = ref('success');
+const tituloAlerta = ref('');
+const mensajeAlerta = ref('');
+
+
+async function copiarTexto() {
+
+  const texto = "Ralfhsebastiaar@gmail.com";
 
   try {
-    const response = await axios.post("/api/contactame", {
+    await navigator.clipboard.writeText(texto);
+    alert('¡Texto copiado al portapapeles!');
+  } catch (err) {
+    alert('No se pudo copiar el texto.');
+  }
+}
+
+
+const enviarCorreo = async () => {
+
+  if (!nombreRemitente.value || !asunto.value || !correo.value || !mensaje.value) {
+    tipoAlerta.value = "warning";
+    tituloAlerta.value = "Campos incompletos";
+    mensajeAlerta.value = "Por favor, completa todos los campos antes de enviar el correo.";
+    mostrarAlerta.value = true;
+    return;
+  }
+  else{
+
+  try {
+    const response = await axios.post("/api/enviarCorreo", {
       nombreRemitente: nombreRemitente.value,
       asunto: asunto.value,
       correo: correo.value,
       mensaje: mensaje.value
     });
 
-    if (response.status === 201 || response.status === 200) {
+    if(response.status === 200){
 
-      alert("Correo enviado exitosamente. ¡Gracias por contactarme!");
+      let nombre = nombreRemitente.value.split(" ")[0];
       
-      // Limpiar los campos del formulario
+      tipoAlerta.value = "success";
+    tituloAlerta.value = "¡Correo Enviado de manera exitosa!";
+    mensajeAlerta.value = `Gracias por contactarme. Te responderé lo antes posible. ¡Que tengas un excelente ${nombre}!`;
+    mostrarAlerta.value = true;
+    
+
       nombreRemitente.value = '';
       asunto.value = '';
       correo.value = '';
       mensaje.value = '';
-        
 
     }
+    
   } catch (error) {
 
-    alert("Error al enviar el correo. Por favor, intenta nuevamente.");
-    
+    tipoAlerta.value = "error";
+    tituloAlerta.value = "Error al enviar el correo";
+    mensajeAlerta.value = "Hubo un problema al enviar tu correo. Por favor, intenta nuevamente más tarde.";
+    mostrarAlerta.value = true;
+  }
   }
 };
 
@@ -47,71 +85,59 @@ const enviarCorreo = async () => {
     <div class="grid grid-cols-12">
 
       <div class="col-span-1"></div>
-      <div class="col-span-4">
+      <div class="col-span-5">
 
         <div>
           <h2 class="text-turquesaBtnText animate-pulse my-10 items-center flex justify-center text-5xl">Contactame</h2>
         </div>
 
-        <div class="flex text-lg text-gray-400">
+        <div class="text-center text-lg ">
 
-          "Estoy abierto a nuevas oportunidades laborales y proyectos freelance.
-          Si deseas colaborar conmigo, estaré encantado de conversar contigo."
+          Estoy abierto a nuevas oportunidades laborales y proyectos freelance. Este espacio está pensado para consultas, propuestas o ideas de colaboración; si deseas trabajar conmigo o conversar sobre un proyecto, estaré encantado de leerte y responderte.
         </div>
 
         <br>
+<hr>
+        <table  class="[&_td]:text-center [&_td]:p-2  [&_th]:p-2 [&_button]:border [&_button]:border-white [&_button]:rounded-xl [&_button]:hover:bg-white rounded-2xl  [&_button]:hover:text-black w-full [&_button]:w-full text-gray-400 items-center justify-center">
+
+  
+  
+  <tbody class=" "> <!-- Opcional: para el cuerpo -->
+    
+    <tr class="">
+
+      <td class="text-turquesaBtnBorder font-bold">Correo Electronico</td>
+      <td>Ralfhsebastiaar@gmail.com</td>
+      <td><button class="cursor-copy" @click="copiarTexto">Copiar!</button></td>
+    </tr>
+    
+    <tr>
+
+      <td class="text-turquesaBtnBorder font-bold">LinkedIn</td>
+      <td>/ralph.Profesional/linked/73</td>
+      <td><a href="sobreMi"><button class="hover:cursor-pointer">Visitar</button></a></td>
+    </tr>
+
+    <tr>
+      <td class="text-turquesaBtnBorder font-bold">GitHub</td>
+      <td>/ralph.devGithub/277362511626001</td>
+      <td><a href="sobreMi"><button class="cursor-pointer">Visitar</button></a></td>
+    </tr>
+
+    <tr>
+      <td class="text-turquesaBtnBorder font-bold">Whatsapp</td>
+      <td>(+506) 62732763</td>
+      <td><a href="https://wa.me/62732763"><button class="cursor-alias">Escribir mensaje</button></a></td>
+    </tr>
+
+  </tbody>
+
+</table>
 
 
-        <div
-          class="flex gap-4 mt-4 text-gray-400 border items-center justify-center border-gray-700 p-6 rounded-lg bg-gray-900 [&_a]:hover:underline-offset-2 [&_a]:hover:underline">
+       
 
-          <ul class="gap-9 space-y-4">
-            <li class="flex">
-              <strong class="text-turquesaBtnText">Correo Electronico:</strong>
-            </li>
-
-            <li class="flex">
-              <strong class="text-turquesaBtnText">LinkedIn:</strong>
-
-            </li>
-
-            <li class="flex">
-              <strong class="text-turquesaBtnText">GitHub:</strong>
-            </li>
-
-            <li class="flex">
-              <strong class="text-turquesaBtnText">Whatsaap:</strong>
-            </li>
-
-
-
-          </ul>
-          <ul class="gap-9 space-y-4">
-            <li class="flex">
-              <span>Ralphseastiaar@gmail.com</span>
-              <button
-                class="ms-10 px-2 border rounded-2xl hover:bg-transparent hover:text-white hover:border-white bg-white text-black">Copiar!</button>
-            </li>
-
-            <li class="flex">
-              <a href="//">/Ralph Abarca.Tech</a>
-            </li>
-
-            <li class="flex">
-              <a href="//">/abr_rod_2002/repository/46653</a>
-            </li>
-
-            <li class="flex">
-              <a href="https://wa.me/62732763">Escribir un mensaje</a>
-            </li>
-
-
-          </ul>
-
-
-          
-
-        </div>
+       
 
         <div class="flex justify-center items-center m-5 gap-4">
             <span class="text-lg text-white">Costa Rica</span>
@@ -122,13 +148,13 @@ const enviarCorreo = async () => {
       </div>
       <div class="col-span-1"></div>
 
-      <div class="col-span-5 px-15 flex justify-center items-center">
+      <div class="col-span-4  flex justify-center items-center">
 
 
         <card class="border-turquesaBtnBorder backdrop-blur-2xl">
           
 
-          <form class="space-y-4 p-3">
+          <div class="space-y-4 p-3">
            
 
             <div class="col-span-3 px-4 text-left">
@@ -164,14 +190,8 @@ hover:scale-98 hover:border-2 hover:border-cyan-300 hover:bg-cyan-900 hover:whit
     </div>
 
 
-            
-              <button @click="crearComentario" type="button"
-          class="inline-flex w-full justify-center rounded-md bg-turquesaBtnBg border-2 border-turquesaBtnBorder px-3 py-2 text-sm font-semibold text-white hover:bg-turquesaBtnBorder hover:border-turquesaBtnText sm:ml-3 hover:shadow-[0_0_10px_2px_rgba(41,158,154,0.7)] sm:w-auto" > 
-          Enviar Correo 
-            </button>
 
-
-          </form>
+  </div>
 
         </card>
       </div>
@@ -181,9 +201,20 @@ hover:scale-98 hover:border-2 hover:border-cyan-300 hover:bg-cyan-900 hover:whit
 
     </div>
 
-    <div class="flex justify-center text-2xl m-4 text-gray-400">
+    <hr>
+    <br>
+    <div class="flex justify-center text-2xl text-gray-400">
       <span>"Responderé lo antes posible. Gracias por tomarte el tiempo de visitar mi portafolio."</span>
     </div>
+
+
+    <Alert
+      :mostrar="mostrarAlerta"
+      :tipo="tipoAlerta"
+      :titulo="tituloAlerta"
+      :mensaje="mensajeAlerta"
+      @cerrar="mostrarAlerta = false"
+    />
 
   </section>
 </template>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\ControllerContactame;
 use App\Http\Controllers\ControllerCurriculum;
 use App\Http\Controllers\ControllerDatosPersonales;
 use App\Http\Controllers\ControllerDescripcionServicios;
@@ -30,4 +31,7 @@ Route::apiResource('curriculums', ControllerCurriculum::class);
 Route::apiResource('proyectoTecnologia', ControllerProyectoTecnologia::class);
 Route::post('/proyectoTecnologia/delete', [ControllerProyectoTecnologia::class, 'desvincularRelacion']);
 Route::apiResource('habilidades', ControllerHabilidades::class);
+Route::post('enviarCorreo', [ControllerContactame::class, 'enviarCorreo']);
 
+Route::get('/curriculums/verCV/{id}', [ControllerCurriculum::class, 'verCurriculum']);
+Route::get('/curriculums/descargarCV/{id}', [ControllerCurriculum::class, 'descargarCurriculum']);

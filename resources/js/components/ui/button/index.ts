@@ -15,8 +15,8 @@ export const buttonVariants = cva(
           'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
         secondary:
           'bg-white text-gray-800 font-semibold py-2 px-2 border border-gray-400 rounded-xl shadow gap-2 hover:scale-105 hover:border-2 hover:border-turquesaBtnBorder hover:bg-turquesaBtnBg hover:text-white  transition-transform duration-300 ease-in-out hover:shadow-[0_0_25px_5px_rgba(34,211,238,0.5)]',
-        ghost:
-          'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+        customSecondary:
+          'bg-white text-gray-800 font-semibold py-2 px-2 border border-gray-400 rounded-xl shadow gap-2 hover:scale-105 hover:border-2  hover:bg-turquesaBtnBg hover:text-white  transition-transform duration-300 ease-in-out ',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {

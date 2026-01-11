@@ -12,10 +12,10 @@
                     class="relative transform overflow-hidden border-2 border-turquesaBtnBorder rounded-lg bg-turquesaBtnBg text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all hover:shadow-[0_0_25px_5px_rgba(41,158,154,0.7)] data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
                     <div class="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
-                        <div class="text-center p-3 text-turquesaBtnBorder text-3xl w-full border-b-2">Habilidades {{tipo}}</div>
+                        <div class="text-center p-3 text-turquesaBtnText text-3xl w-full border-b-2">Habilidades {{tipo}}</div>
 
-                        <div class="flex justify-center items-center">
-                        <ul class="grid gap-4 py-5 px-10">
+                        <div class="flex justify-center items-center  max-h-100">
+                        <ul class="py-4 px-10 font-light">
 
                             <li v-for="habilidad in habilidades" :key="habilidad.id_habilidad" class="list-disc text-lg text-left text-white">
                                 {{habilidad.nombre}}

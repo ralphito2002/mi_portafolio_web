@@ -35,6 +35,8 @@ onMounted(() => {
 </script>
 
 <template>
+
+  <section key="comentarios" class="page">
     
 <Transition name="fade" mode="in-out">
     <div class="grid grid-cols-12">
@@ -44,10 +46,16 @@ onMounted(() => {
 
             <h2 class="text-turquesaBtnBorder my-10 items-center flex justify-center text-5xl">Comentarios</h2>
 
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit excepturi eaque quod totam atque id, minus nam beatae unde modi eos enim est exercitationem dignissimos quos! Harum iusto a sint?Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique porro vero quibusdam autem facilis obcaecati aliquid nihil in nemo, quae maxime doloremque provident vitae natus explicabo, atque ut! Doloribus, amet!
-<br><br>
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis enim nisi reiciendis numquam tempora excepturi veniam. Soluta ducimus harum modi, accusantium eveniet excepturi consequuntur laudantium molestiae tempore placeat, ipsam fuga.
-<br><br>
+          <p class="text-center text-lg font-extralight">Este espacio está dedicado a escuchar tu opinión.
+Tus comentarios son un pilar fundamental para mejorar, corregir fallos y crecer como profesional.
+Si has trabajado conmigo, visitado mis proyectos o querés aportar una sugerencia, te invito a dejar tu mensaje.</p>  
+
+
+           <br><br>
+           
+            <p class="text-center text-lg font-semibold">Agradezco de antemano tu tiempo y disposición para compartir tus pensamientos. Cada comentario es valioso y me ayuda a seguir mejorando.</p>
+
+           <br><hr><br>
 
     <Button class="w-full" command="show-modal" commandfor="modalNuevoComentario">Escribir comentario</Button>
 <br><br>
@@ -113,7 +121,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis enim nisi 
     </div>
 </Transition>
        
-   
+   </section>
 </template>
 
 <style>

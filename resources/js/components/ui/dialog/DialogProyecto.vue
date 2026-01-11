@@ -14,11 +14,11 @@
 
 
 
-                        <div class="grid grid-cols-2 w-full  ">
+                        <div class="grid grid-cols-2 gap-3  ">
 
                             <div class="col-span-1 w-full flex justify-center items-center">
 
-                                <img class="rounded-lg w-45 h-45" :src="`/images/fondos/${imagen}`" alt="">
+                                <img class="rounded-lg object-cover w-full h-45" :src="`/storage/proyectos/${imagen}`" alt="">
 
                             </div>
 

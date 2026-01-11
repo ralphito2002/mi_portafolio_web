@@ -28,7 +28,7 @@
           </div>
           <div
             v-if="tipo === 'warning'"
-            class="bg-yellow-500 p-3 rounded-full"
+            class=" text-3xl p-3 rounded-full"
           >
             ⚠️
           </div>

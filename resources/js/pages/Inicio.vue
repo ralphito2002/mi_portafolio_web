@@ -18,10 +18,14 @@ function abrirModal(proyecto) {
 }
 
 const frases = [
-  "Primera frase",
-  "Segunda frase",
-  "Tercera frase",
-  "Cuarta frase"
+  "Creatividad en código",
+  "Código con propósito",
+  "Me encantaria trabajar juntos!",
+  "Ideas convertidas en software",
+  "Diseño y lógica en equilibrio",
+  "Pensado para personas, construido con tecnología",
+  "Mejoramiento continuo",
+  "Busca de experiencias y oportunidades."
 ];
 
 function cambiarFrase() {
@@ -40,8 +44,6 @@ function cambiarFrase() {
     }, 600);
   }, 4000);
 }
-
-document.addEventListener("DOMContentLoaded", cambiarFrase);
 
 const proyectos = ref([]);
 
@@ -80,6 +82,24 @@ const cargarTecnologias = async () => {
 
 };
 
+const habilidadesBlandas = ref([]);
+const habilidadesTecnicas = ref([]);
+
+const cargarHabilidades = async () => {
+
+  try {
+    const response = await axios.get('/api/habilidades');
+       
+        habilidadesBlandas.value = response.data.data.filter(habilidad => habilidad.tipo === 'blanda');
+        habilidadesTecnicas.value = response.data.data.filter(habilidad => habilidad.tipo === 'tecnica');
+
+  } catch (error) {
+    console.error("Error al cargar habilidades:", error);
+  }
+
+};
+
+
 const servicios = ref([]);
 
 const cargarServicios = async () => {
@@ -104,10 +124,13 @@ const seleccionarTecnologia = (tecnologia) => {
 
 
 onMounted(() => {
+cambiarFrase();
+  cargarHabilidades();
    cargarServicios();
     cargarComentarios();
      cargarTecnologias(); 
       cargarProyectos();
+      
 });
 
 </script>
@@ -128,7 +151,7 @@ onMounted(() => {
     
     <h3 class="text-lg mb-5 text-cyan-200 underline underline-offset-8">Portafolio profesional WEB</h3>
 
-    <h1 class="text-5xl font-semibold mb-5">RALPH SEBASTIAN ABARCA RODRIGUEZ</h1>
+    <h1 class="text-5xl  font-semibold mb-5">RALPH SEBASTIAN ABARCA RODRIGUEZ</h1>
 
     <h2 class="text-xl mb-5 text-orange-200">Desarrollador Fullstack | Informatico Empresarial</h2>
 
@@ -136,7 +159,7 @@ onMounted(() => {
 
     <h3 class="text-xl mb-10">Apasionado por la tecnologia, el diseno y solucion de problemas a traves del codigo. En este espacio muestro quien soy, que hago y como puedo ayudarte.</h3>
 
-    <h1 id="frasesField" class="text-3xl mb-12 text-emerald-700">Me encantaria trabajar juntos!</h1>
+    <h1 id="frasesField" class="text-3xl font-semibold mb-12 text-emerald-400">Me encantaria trabajar juntos!</h1>
 
     <div class="flex justify-center gap-8">
 
@@ -153,12 +176,12 @@ onMounted(() => {
   <div class="col-span-5 grid justify-center gap-5">
     
 
-      <img src="/images/RalphAbProfile.jpg" alt="" class="w-89 h-80 rounded-2xl border-4 shadow-[0_0_25px_5px_rgba(41,158,154,0.7)] object-cover object-right border-white">
+      <img src="/images/RalphAbProfile.jpg" alt="" class="w-89 h-80 rounded-2xl border-4 shadow-[0_0_25px_5px_rgba(41,158,154,0.7)] object-cover object-right border-white ">
 
 
       <Card>
         
-        <div class="p-3 backdrop-blur-xs">
+        <div class="p-3 backdrop-blur-xs transition-all duration-75 ease-in-out">
           <span>
             <i class="fa-solid fa-user p-2 me-4"></i>Ralph Abarca R.<br>
             <i class="fa-solid fa-cake-candles p-2 me-4"></i>23 años.<br>
@@ -214,29 +237,21 @@ onMounted(() => {
 </div>
 <div class="col-span-5 grid justify-center">
 
-  <Card class="w-100">
+  <Card class="">
     <div class="p-3">
 
       <h2 class="ms-7 text-cyan-200 text-xl p-2">Habilidades tecnicas:</h2>
-      <ul class="list-disc list-inside text-sm ms-15">
-  <li>Elemento centrado</li>
-  <li>Elemento centrado</li>
-  <li>Elemento centrado</li>
-  <li>Otro más</li>
-  <li>Otro más</li>
-  <li>Otro más</li>
+      <ul class="list-disc list-inside text-sm ms-15 space-y-2">
+  <li v-for="habilidad in habilidadesTecnicas">{{habilidad.nombre}}</li>
+  
 </ul>
 <br>
 <hr class="border-t-1 border-cyan-300 mx-8">
 
 <h2 class="ms-7 text-cyan-200 text-xl p-2">Habilidades blandas:</h2>
-      <ul class="list-disc list-inside text-sm ms-15">
-  <li>Elemento centrado</li>
-  <li>Elemento centrado</li>
-  <li>Elemento centrado</li>
-  <li>Otro más</li>
-  <li>Otro más</li>
-  <li>Otro más</li>
+      <ul class="list-disc list-inside text-sm ms-15 space-y-2">
+  <li v-for="habilidad in habilidadesBlandas">{{ habilidad.nombre }}</li>
+  
 </ul>
 
 <br>
@@ -360,7 +375,7 @@ onMounted(() => {
   
   <div class="w-full h-40 overflow-hidden mx-auto bg-amber-400">
   <img class="object-cover h-full w-full rounded-t-lg" 
-       :src="`/images/fondos/${proyecto.imagen}`" alt="imagenProyecto" />
+       :src="`/storage/proyectos/${proyecto.imagen}`" alt="imagenProyecto" />
 </div>
 
     <div class=" border-t-turquesaBtnBorder border-t-2 group-hover:bg-turquesaBtnBg">

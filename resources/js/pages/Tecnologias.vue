@@ -38,6 +38,8 @@ onMounted(() => {
 </script>
 
 <template>
+
+  <section key="tecnologias" class="page">
     
     <div class="grid grid-cols-12">
 
@@ -46,12 +48,21 @@ onMounted(() => {
 
     <div><h2 class="text-turquesaBtnText animate-pulse my-10 text-center text-5xl ">Tecnologias</h2></div>
     
-    <div class=" overflow-auto">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi reprehenderit maiores incidunt id impedit perferendis modi enim possimus. Commodi aut amet doloremque. Quam, nam et. Sint consectetur eveniet tenetur aliquid?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus corporis tempora minima deleniti, earum similique ullam voluptatem porro iusto soluta maxime rerum enim ipsam eligendi tenetur atque, sit repudiandae?
+    <div class=" overflow-auto text-center text-lg font-extralight">
+    <p>En esta sección presento las tecnologías y herramientas con las que trabajo día a día como desarrollador.
+Incluyo tanto lenguajes de programación como frameworks, servicios y utilidades que me permiten crear aplicaciones completas, funcionales y bien estructuradas.</p>
+  
+<br>
+  
+    <p class="font-semibold">Mi objetivo es mostrar de forma organizada las herramientas que domino y con las que he construido diferentes proyectos.</p>
+  <br>
+<p class="text-md">Aquí también encontrarás tecnologías que sigo aprendiendo y perfeccionando, ya que considero importante mantenerme en constante crecimiento.
+</p>
+<br>
 
-    <br><br>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quis dolor laborum consequatur placeat, cumque voluptas esse fuga nulla reprehenderit inventore cupiditate laudantium aliquid explicabo vel illo. Voluptate, modi dolores.
-    </div><br><br>
+</div>
+
+  
 <div class="p-2 w-full border-2 border-dashed border-gray-400 text-gray-100 animate-pulse rounded-lg text-center">Puedes presionar en uno de los iconos para ver su informacion</div>
 
 
@@ -243,6 +254,7 @@ onMounted(() => {
 
  </div>
 
+ </section>
 
 </template>
 
