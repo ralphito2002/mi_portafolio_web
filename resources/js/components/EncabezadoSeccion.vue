@@ -13,12 +13,14 @@
   <div class="col-span-1 flex items-center">
     <div class="h-1 flex-1 bg-turquesaBtnText"></div>
   </div>
-  <div class="col-span-2 text-3xl text-turquesaBtnText text-center">{{titulo}}</div>
-  <div class="col-span-6 flex items-center">
+
+  <div class="col-span-6 md:col-span-2 text-xl md:text-3xl text-turquesaBtnText text-center">{{titulo}}</div>
+
+  <div class="col-span-3 md:col-span-6 flex items-center">
     <div class="h-1 flex-1 bg-turquesaBtnText animate-pulse"></div>
   </div>
 
-  <div class="col-span-3"></div>
+  <div class="md:col-span-3"></div>
 </div>
 
 </template>

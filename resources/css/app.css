@@ -12,12 +12,17 @@
 /* import  '@aivue/chatbot/style.css' ESTILOS GLOBALES */
 
 .routerNavBar{
-
     @apply text-purple-200 rounded-xl p-2 m-1 ring-0 
     hover:ring-1 hover:ring-purple-300 hover:ring-offset-1
     hover:ring-offset-turquesaBtnBorder hover:shadow-[0_0_25px_5px_rgba(41,158,154,0.7)]
     transition-all duration-200 ease-in-out;
+}
 
+.routerNavBarMobile{
+    @apply text-purple-200 rounded-xl px-2 ring-0 
+    hover:ring-1 hover:ring-purple-300 hover:ring-offset-1
+    hover:ring-offset-turquesaBtnBorder hover:shadow-[0_0_25px_5px_rgba(41,158,154,0.7)]
+    transition-all duration-200 ease-in-out;
 }
 
 .routerNavBarFooter{
